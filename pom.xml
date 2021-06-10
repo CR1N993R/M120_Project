@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+         xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+
+    <groupId>ch.tbz</groupId>
+    <artifactId>M120_Discord</artifactId>
+    <packaging>pom</packaging>
+    <version>1.0</version>
+
+    <modules>
+        <module>Server</module>
+        <module>Client</module>
+    </modules>
+
+    <properties>
+        <maven.compiler.source>16</maven.compiler.source>
+        <maven.compiler.target>16</maven.compiler.target>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+    </properties>
+
+    <build>
+        <plugins>
+            <plugin>
+                <artifactId>exec-maven-plugin</artifactId>
+                <groupId>org.codehaus.mojo</groupId>
+                <version>3.0.0</version>
+                <executions>
+                    <execution>
+                        <id>install server-socket</id>
+                        <phase>pre-clean</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mvn</executable>
+                            <arguments>
+                                <argument>install:install-file</argument>
+                                <argument>-Dfile=.lib/server-wrapper.jar</argument>
+                                <argument>-DgroupId=ch.fenix</argument>
+                                <argument>-DartifactId=server-wrapper</argument>
+                                <argument>-Dversion=1.0</argument>
+                                <argument>-Dpackaging=jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                    <execution>
+                        <id>install client-socket</id>
+                        <phase>pre-clean</phase>
+                        <goals>
+                            <goal>exec</goal>
+                        </goals>
+                        <configuration>
+                            <executable>mvn</executable>
+                            <arguments>
+                                <argument>install:install-file</argument>
+                                <argument>-Dfile=.lib/client-wrapper.jar</argument>
+                                <argument>-DgroupId=ch.fenix</argument>
+                                <argument>-DartifactId=client-wrapper</argument>
+                                <argument>-Dversion=1.0</argument>
+                                <argument>-Dpackaging=jar</argument>
+                            </arguments>
+                        </configuration>
+                    </execution>
+                </executions>
+                <inherited>false</inherited>
+            </plugin>
+        </plugins>
+    </build>
+</project>
