@@ -1,6 +1,7 @@
 package ch.tbz.server.data;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 
@@ -9,18 +10,25 @@ import java.util.ArrayList;
 
 @Getter
 @Entity
-@Table(name = "groups")
-public class Group {
+@Table(name = "friends")
+@NoArgsConstructor
+public class Friend {
     @Id
     @Column(name = "id")
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private long id;
-    @Column(name = "name")
-    @Setter
-    private String name;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user1;
+    @ManyToOne(fetch = FetchType.LAZY)
+    private User user2;
     @OneToMany(fetch = FetchType.LAZY)
     private ArrayList<Message> messages = new ArrayList<>();
-    @ManyToMany(fetch = FetchType.LAZY)
-    private ArrayList<User> users = new ArrayList<>();
+    @Column(name = "status")
+    @Setter
+    private String status;
+
+    public void createMessage(String msg, User user){
+        messages.add(new Message(msg,user));
+    }
 }
