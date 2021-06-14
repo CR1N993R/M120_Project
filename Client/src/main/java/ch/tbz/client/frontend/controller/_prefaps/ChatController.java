@@ -4,7 +4,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
-public class ChatFriendController {
+public class ChatController {
     public VBox vboxMessages;
     public TextField messageTb;
 

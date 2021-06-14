@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="65.0" prefWidth="71.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.ServerIconController">
+    <Button fx:id="serverButton" layoutX="5.0" layoutY="2.0" onAction="#clicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;" />
+</AnchorPane>
