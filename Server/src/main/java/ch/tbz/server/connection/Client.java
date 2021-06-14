@@ -3,6 +3,7 @@ package ch.tbz.server.connection;
 import ch.fenix.serverwrapper.Connection;
 import ch.tbz.server.data.User;
 import ch.tbz.server.util.Database;
+import ch.tbz.server.util.Json;
 import ch.tbz.server.util.security.Hashing;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -52,35 +53,56 @@ public class Client {
         user = null;
     }
 
-    public void sendToUser(String msg) {
-
+    public void sendToUser(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+            int userid = Integer.parseInt((String) jo.get("userid"));
+            String message = (String) jo.get("msg");
+            user.sendMessage(message, userid);
+        }
     }
 
-    public void sendToGroup(String msg) {
+    public void sendToGroup(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
 
+        }
     }
 
-    public void getData(String msg) {
-
+    public void getData(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+        }
     }
 
-    public void sendFriendRequest(String msg) {
-
+    public void sendFriendRequest(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+        }
     }
 
-    public void declineFriendRequest(String msg) {
-
+    public void declineFriendRequest(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+        }
     }
 
-    public void acceptFriendRequest(String msg) {
-
+    public void acceptFriendRequest(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+        }
     }
 
-    public void getUsersByName(String msg) {
-
+    public void getUsersByName(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+        }
     }
 
-    public void disconnect(String msg) {
+    public void disconnect(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
 
+        }
     }
 }

@@ -23,6 +23,8 @@ public class User {
     private String password;
     @Column(name = "last_login")
     private LocalDateTime lastLogin;
+    @Transient
+    private boolean loggedIn;
     @OneToMany(fetch = FetchType.LAZY)
     private ArrayList<Friend> friends = new ArrayList<>();
     @ManyToMany(fetch = FetchType.LAZY)
@@ -39,7 +41,7 @@ public class User {
     public void sendMessage(String msg, int uid){
         for (Friend friend : friends) {
             if (friend.getUser1().uid == uid || friend.getUser2().uid == uid){
-
+                friend.createMessage(msg, this);
             }
         }
     }

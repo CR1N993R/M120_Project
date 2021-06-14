@@ -1,6 +1,7 @@
 package ch.tbz.server.data;
 
 import lombok.Getter;
+import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 
 import javax.persistence.*;
@@ -10,6 +11,7 @@ import java.time.LocalDateTime;
 @Getter
 @Entity
 @Table(name = "messages")
+@NoArgsConstructor
 public class Message {
     @Id
     @Column(name = "id")
