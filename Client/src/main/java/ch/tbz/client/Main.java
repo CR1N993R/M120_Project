@@ -1,6 +1,5 @@
 package ch.tbz.client;
 
-import ch.fenix.clientwrapper.Connection;
 import ch.tbz.client.frontend.UIManager;
 import javafx.application.Application;
 import javafx.stage.Stage;

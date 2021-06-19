@@ -3,10 +3,11 @@ package ch.tbz.server.data;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
+import org.json.simple.JSONObject;
 
 import javax.persistence.*;
-import java.time.LocalDate;
 import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 @Getter
 @Entity
@@ -21,13 +22,27 @@ public class Message {
     @Column(name = "content")
     private String content;
     @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_sent_by")
     private User sentBy;
-    @Column(name = "sentAt")
+    @Column(name = "sent_at")
     private LocalDateTime sentAt;
 
-    public Message(String content, User sentBy) {
-        this.content = content;
-        this.sentBy = sentBy;
+    public Message(String msg, User sender){
+        content = msg;
+        sentBy = sender;
         sentAt = LocalDateTime.now();
+    }
+
+    public JSONObject toJson(){
+        JSONObject object = new JSONObject();
+        object.put("id", id);
+        object.put("text",content);
+        object.put("user", sentBy.toJson());
+        object.put("time", timeToString());
+        return object;
+    }
+
+    public String timeToString(){
+        return sentAt.format(DateTimeFormatter.ISO_DATE_TIME);
     }
 }

@@ -1,7 +1,7 @@
 package ch.tbz.server.util;
 
-import ch.tbz.server.data.Group;
 import ch.tbz.server.data.User;
+import ch.tbz.server.data.group.GroupChat;
 import org.hibernate.NonUniqueResultException;
 
 import javax.persistence.EntityManager;
@@ -12,7 +12,7 @@ import java.util.List;
 public class Database {
     private static EntityManager em;
 
-    private static void init(){
+    public static void init(){
         if (em == null) {
             em = Persistence.createEntityManagerFactory("ch.tbz.discord").createEntityManager();
         }
@@ -30,16 +30,16 @@ public class Database {
         return em.createQuery("from User where User.username like %" +search+ "%", User.class).getResultList();
     }
 
-    public static User getUsersById(String id){
+    public static User getUsersById(int id){
         return em.find(User.class, id);
     }
 
-    public static Group getGroupByName(String search){
-        return em.createQuery("from Group where Group.name like %" + search + "%", Group.class).getSingleResult();
+    public static GroupChat getGroupByName(String search){
+        return em.createQuery("from Group where Group.name like %" + search + "%", GroupChat.class).getSingleResult();
     }
 
-    public static Group getGroupById(long id){
-        return em.find(Group.class, id);
+    public static GroupChat getGroupById(long id){
+        return em.find(GroupChat.class, id);
     }
 
     public static void persistObject(Object o){

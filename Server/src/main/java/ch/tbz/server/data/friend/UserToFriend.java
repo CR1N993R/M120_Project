@@ -1,0 +1,70 @@
+package ch.tbz.server.data.friend;
+
+import ch.tbz.server.data.User;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import org.hibernate.annotations.GenericGenerator;
+import org.json.simple.JSONObject;
+
+import javax.persistence.*;
+
+@Getter
+@Entity
+@Table(name = "user_to_friend")
+@NoArgsConstructor
+public class UserToFriend {
+    @Id
+    @Column(name = "id")
+    @GeneratedValue(generator = "incrementor")
+    @GenericGenerator(name = "incrementor", strategy = "increment")
+    private long id;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_user")
+    private User user;
+    @Column(name = "unread_messages")
+    private int unreadMessages = 0;
+    @Column(name = "state")
+    private String state;
+    @ManyToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "fk_chat")
+    private FriendChat chat;
+
+    public UserToFriend(User user, String state, FriendChat chat){
+        this.chat = chat;
+        this.user = user;
+        this.state = state;
+        user.getFriends().add(this);
+        user.sendData();
+    }
+
+    public JSONObject toJson() {
+        JSONObject object = new JSONObject();
+        object.put("unreadMessages", unreadMessages);
+        object.put("users", getChat().getUsersAsJson());
+        object.put("message", getChat().getMessagesAsJson());
+        return object;
+    }
+
+    public User getFriend() {
+        return chat.getSecondUser(this.user);
+    }
+
+    public void decline() {
+        user.getFriends().remove(this);
+        user.sendData();
+    }
+
+    public void accept() {
+        state = "accepted";
+        user.sendData();
+    }
+
+    public void receivedMessage(){
+        unreadMessages ++;
+        user.sendData();
+    }
+
+    public void clearUnreadMessages(){
+        unreadMessages = 0;
+    }
+}
