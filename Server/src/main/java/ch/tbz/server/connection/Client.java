@@ -42,7 +42,7 @@ public class Client {
     }
 
     public void attachListeners() {
-        user.setMessageEvent(() -> getData(""));
+        user.setMessageEvent(connection::emit);
         connection.setOn("logout", this::logout);
         connection.setOn("sendToUser", this::sendToUser);
         connection.setOn("sendToGroup", this::sendToGroup);

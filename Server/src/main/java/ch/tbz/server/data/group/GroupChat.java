@@ -2,9 +2,9 @@ package ch.tbz.server.data.group;
 
 import ch.tbz.server.data.Message;
 import ch.tbz.server.data.User;
+import ch.tbz.server.util.Database;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
 import org.json.simple.JSONArray;
 
@@ -26,7 +26,6 @@ public class GroupChat {
     private List<UserToGroup> users = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY)
     private List<Message> messages = new ArrayList<>();
-    @Setter
     @Column(name = "name")
     private String name;
 
@@ -35,11 +34,17 @@ public class GroupChat {
         this.users.add(owner);
     }
 
+    public void setName(String name){
+        this.name = name;
+        Database.persistObject(this);
+    }
+
     public void removeUser(UserToGroup user){
         users.remove(user);
         for (UserToGroup userToGroup : users) {
             userToGroup.getUser().sendData();
         }
+        Database.persistObject(this);
     }
 
     public void addUser(User user){
@@ -47,6 +52,7 @@ public class GroupChat {
         for (UserToGroup userToGroup : users) {
             userToGroup.getUser().sendData();
         }
+        Database.persistObject(this);
     }
 
     public void addMessage(String text, User user){
@@ -55,6 +61,7 @@ public class GroupChat {
         for (UserToGroup userToChat : users) {
             userToChat.receivedMessage();
         }
+        Database.persistObject(this);
     }
 
     public JSONArray getUsersAsJson(){

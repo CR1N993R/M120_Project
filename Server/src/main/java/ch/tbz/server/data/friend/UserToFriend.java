@@ -1,6 +1,7 @@
 package ch.tbz.server.data.friend;
 
 import ch.tbz.server.data.User;
+import ch.tbz.server.util.Database;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -52,19 +53,23 @@ public class UserToFriend {
     public void decline() {
         user.getFriends().remove(this);
         user.sendData();
+        Database.dropObject(this);
     }
 
     public void accept() {
         state = "accepted";
         user.sendData();
+        Database.persistObject(this);
     }
 
     public void receivedMessage(){
         unreadMessages ++;
         user.sendData();
+        Database.persistObject(this);
     }
 
     public void clearUnreadMessages(){
         unreadMessages = 0;
+        Database.persistObject(this);
     }
 }

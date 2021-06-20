@@ -1,6 +1,7 @@
 package ch.tbz.server.data.group;
 
 import ch.tbz.server.data.User;
+import ch.tbz.server.util.Database;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,11 +32,13 @@ public class UserToGroup {
         groupChat.getUsers().add(this);
         this.chat = groupChat;
         this.user = user;
+        Database.persistObject(this);
     }
 
     public UserToGroup(User user, String groupName){
         this.user = user;
         chat = new GroupChat(groupName, this);
+        Database.persistObject(this);
     }
 
     public JSONObject toJson(){
@@ -48,14 +51,17 @@ public class UserToGroup {
 
     public void leaveGroup() {
         chat.removeUser(this);
+        Database.dropObject(this);
     }
 
     public void receivedMessage(){
         unreadMessages ++;
         user.sendData();
+        Database.persistObject(this);
     }
 
     public void clearUnreadMessages(){
         unreadMessages = 0;
+        Database.persistObject(this);
     }
 }

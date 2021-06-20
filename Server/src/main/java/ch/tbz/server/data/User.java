@@ -11,6 +11,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 import org.hibernate.annotations.GenericGenerator;
+import org.hibernate.exception.ConstraintViolationException;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 
@@ -49,7 +50,11 @@ public class User {
             this.username = username;
             this.password = Hashing.hash(password);
             Database.persistObject(this);
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException ignored) { }
+            emit("register", "success");
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException ignored) {
+        }catch (ConstraintViolationException e){
+            emit("register", "user_already_exists");
+        }
     }
 
     public void sendMessageToFriend(String msg, int uid) {
@@ -74,7 +79,13 @@ public class User {
 
     public void sendData() {
         if (messageEvent != null) {
-            messageEvent.sendData();
+            messageEvent.sendMsg("getData", getJsonData().toJSONString());
+        }
+    }
+
+    public void emit(String event, String msg){
+        if (messageEvent != null){
+            messageEvent.sendMsg(event, msg);
         }
     }
 
@@ -110,12 +121,14 @@ public class User {
 
     public void addFriend(User friend) {
         new FriendChat(this, friend);
+        Database.persistObject(this);
     }
 
     public void declineFriend(int userid) {
         for (UserToFriend friend : friends) {
             if (friend.getFriend().uid == userid) {
                 friend.getChat().decline();
+                Database.persistObject(this);
                 return;
             }
         }
@@ -145,6 +158,7 @@ public class User {
                 group.leaveGroup();
                 groups.remove(group);
                 sendData();
+                Database.persistObject(this);
                 return;
             }
         }
@@ -164,6 +178,7 @@ public class User {
     public void createGroup(String groupName){
         UserToGroup userToGroup = new UserToGroup(this, groupName);
         this.groups.add(userToGroup);
+        Database.persistObject(this);
         sendData();
     }
 

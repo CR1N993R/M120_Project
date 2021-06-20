@@ -48,4 +48,11 @@ public class Database {
         em.flush();
         em.getTransaction().commit();
     }
+
+    public static void dropObject(Object o){
+        em.getTransaction().begin();
+        em.remove(o);
+        em.flush();
+        em.getTransaction().commit();
+    }
 }

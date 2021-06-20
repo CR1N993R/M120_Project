@@ -1,5 +1,6 @@
 package ch.tbz.server.data;
 
+import ch.tbz.server.util.Database;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -31,6 +32,7 @@ public class Message {
         content = msg;
         sentBy = sender;
         sentAt = LocalDateTime.now();
+        Database.persistObject(this);
     }
 
     public JSONObject toJson(){

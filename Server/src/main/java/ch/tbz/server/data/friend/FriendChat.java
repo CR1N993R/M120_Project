@@ -2,6 +2,7 @@ package ch.tbz.server.data.friend;
 
 import ch.tbz.server.data.Message;
 import ch.tbz.server.data.User;
+import ch.tbz.server.util.Database;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
@@ -29,14 +30,15 @@ public class FriendChat {
     public FriendChat(User user, User friend){
         users.add(new UserToFriend(user, "sent", this));
         users.add(new UserToFriend(friend, "received", this));
+        Database.persistObject(this);
     }
 
     public void addMessage(String text, User user){
         Message message = new Message(text, user);
         messages.add(message);
-
         users.get(0).receivedMessage();
         users.get(1).receivedMessage();
+        Database.persistObject(this);
     }
 
     public JSONArray getUsersAsJson(){
@@ -66,10 +68,12 @@ public class FriendChat {
     public void decline(){
         users.get(0).decline();
         users.get(1).decline();
+        Database.dropObject(this);
     }
 
     public void accept(){
         users.get(0).accept();
         users.get(1).accept();
+        Database.persistObject(this);
     }
 }
