@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+
+
+<AnchorPane prefHeight="350" prefWidth="325" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendRequestsController">
+   <children>
+      <VBox fx:id="list" layoutX="25" layoutY="25.0" prefHeight="300.0" prefWidth="275.0" />
+   </children>
+</AnchorPane>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
+
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.MenuController">
+    <Button layoutX="25" layoutY="90" onAction="#toSettings" prefHeight="30" prefWidth="175" text="Settings" />
+    <Button layoutX="25" layoutY="180" onAction="#toFriends" prefHeight="30" prefWidth="175" text="Friends" />
+    <Button layoutX="25" layoutY="270" onAction="#toRequests" prefHeight="30" prefWidth="175" text="Requests" />
+    <Line endX="225" endY="375" startX="225" startY="25" />
+    <AnchorPane layoutX="250" layoutY="25" prefHeight="350" prefWidth="325">
+
+    </AnchorPane>
+</AnchorPane>
