@@ -5,17 +5,17 @@
 <?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-
-<AnchorPane prefHeight="45.0" prefWidth="137.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.groupchat.NoelCédricVincent.Frontend.Controller._prefaps.FriendIconController">
+<AnchorPane prefHeight="45.0" prefWidth="137.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendIconController">
    <children>
-      <Label fx:id="usernameLabel" layoutX="2.0" layoutY="9.0" prefHeight="27.0" prefWidth="105.0" AnchorPane.bottomAnchor="8.8" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="29.799999999999997" AnchorPane.topAnchor="9.0">
+      <Label fx:id="usernameLabel" layoutX="2.0" layoutY="9.0" prefHeight="27.0" prefWidth="100.0" AnchorPane.bottomAnchor="9.0" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="35.0" AnchorPane.topAnchor="9.0">
          <font>
             <Font name="System Bold" size="14.0" />
          </font>
           <tooltip>
-              <Tooltip fx:id="usernameTooltip"/>
+              <Tooltip fx:id="usernameTooltip" />
           </tooltip>
       </Label>
-      <Circle fx:id="statusCircle" fill="#8f979f" layoutX="119.0" layoutY="23.0" radius="14.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="4.0" />
+      <Circle fx:id="statusCircle" fill="#8f979f" layoutX="110.79999999999993" layoutY="23.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="17.200000000000074" />
+      <Label fx:id="newMassageCount" alignment="CENTER_RIGHT" layoutX="116.0" layoutY="14.0" prefHeight="18.0" prefWidth="18.0" textAlignment="RIGHT" textFill="RED" />
    </children>
 </AnchorPane>

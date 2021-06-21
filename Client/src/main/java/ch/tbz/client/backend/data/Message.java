@@ -12,4 +12,20 @@ public class Message {
     private final String message;
     private final Person sender;
     private final LocalDateTime sentAt;
+
+    public long getId() {
+        return id;
+    }
+
+    public String getMessage() {
+        return message;
+    }
+
+    public Person getSender() {
+        return sender;
+    }
+
+    public LocalDateTime getSentAt() {
+        return sentAt;
+    }
 }

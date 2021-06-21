@@ -7,8 +7,13 @@ import java.util.ArrayList;
 
 @Getter
 @AllArgsConstructor
-public class Group {
+public class Group implements Chat{
     private final long groupId;
     private final ArrayList<Person> users;
     private final ArrayList<Message> messages;
+
+    @Override
+    public ArrayList<Message> getMessage() {
+        return this.messages;
+    }
 }
