@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<ScrollPane hbarPolicy="NEVER" prefHeight="361.0" prefWidth="137.0" vbarPolicy="NEVER"
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ch.tbz.client.frontend.controller._prefaps.TextChannelController">
+    <content>
+        <VBox fx:id="vboxFriends" minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="137.0">
+            <Label fx:id="channelName" prefHeight="18.0" prefWidth="135.0"/>
+            <ScrollPane fx:id="member" prefHeight="350.0" prefWidth="138.0">
+
+            </ScrollPane>
+        </VBox>
+
+    </content>
+</ScrollPane>
