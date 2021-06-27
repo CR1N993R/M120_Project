@@ -36,6 +36,9 @@ public class GroupChat {
 
     public void setName(String name){
         this.name = name;
+        for (UserToGroup user : users) {
+            user.getUser().sendData();
+        }
         Database.persistObject(this);
     }
 

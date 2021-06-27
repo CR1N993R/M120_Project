@@ -43,6 +43,8 @@ public class UserToGroup {
 
     public JSONObject toJson(){
         JSONObject object = new JSONObject();
+        object.put("id", getChat().getId());
+        object.put("name", getChat().getName());
         object.put("unreadMessages", unreadMessages);
         object.put("users", getChat().getUsersAsJson());
         object.put("message", getChat().getMessagesAsJson());

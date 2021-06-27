@@ -1,5 +1,91 @@
 package ch.tbz.client.backend.data;
 
-public class DataParser {
+import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
+import org.json.simple.parser.JSONParser;
+import org.json.simple.parser.ParseException;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.ArrayList;
+
+public class DataParser {
+    public static void parseData(String json, User user) {
+        try {
+            JSONParser parser = new JSONParser();
+            JSONObject object = (JSONObject) parser.parse(json);
+            long userId = Long.parseLong((String) object.get("userId"));
+            String userName = (String) object.get("userName");
+            boolean loggedIn = (boolean) object.get("online");
+            ArrayList<Friend> friends = parseFriends((JSONArray) object.get("friends"));
+            ArrayList<Group> groups = parseGroups((JSONArray) object.get("groups"));
+            user.updateData(userId, userName, groups, friends, loggedIn);
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static ArrayList<Friend> parseFriends(JSONArray friends) {
+        ArrayList<Friend> friendList = new ArrayList<>();
+        for (Object friendObj : friends) {
+            friendList.add(parseFriend((JSONObject) friendObj));
+        }
+        return friendList;
+    }
+
+    private static ArrayList<Group> parseGroups(JSONArray groups) {
+        ArrayList<Group> groupList = new ArrayList<>();
+        for (Object group : groups) {
+            groupList.add(parseGroup((JSONObject) group));
+        }
+        return groupList;
+    }
+
+    private static Group parseGroup(JSONObject o) {
+        int id = Math.toIntExact(Long.parseLong((String) o.get("id")));
+        int unreadMessages = Math.toIntExact(Long.parseLong((String) o.get("unreadMessages")));
+        String name = (String) o.get("name");
+        return new Group(id, name, unreadMessages, parsePersons((JSONArray) o.get("users")), parseMessages((JSONArray) o.get("messages")));
+    }
+
+    private static ArrayList<Message> parseMessages(JSONArray array) {
+        ArrayList<Message> messages = new ArrayList<>();
+        for (Object o : array) {
+            messages.add(parseMessage((JSONObject) o));
+        }
+        return messages;
+    }
+
+    private static Message parseMessage(JSONObject o) {
+        int id = Math.toIntExact(Long.parseLong((String) o.get("id")));
+        String text = (String) o.get("text");
+        Person person = parsePerson((JSONObject) o.get("user"));
+        LocalDateTime ldt = LocalDateTime.parse((String) o.get("time"), DateTimeFormatter.ISO_DATE_TIME);
+        return new Message(id, text, person, ldt);
+    }
+
+    public static ArrayList<Person> parsePersons(JSONArray array) {
+        ArrayList<Person> members = new ArrayList<>();
+        for (Object o : array) {
+            members.add(parsePerson((JSONObject) o));
+        }
+        return members;
+    }
+
+    private static Friend parseFriend(JSONObject o) {
+        int id = Math.toIntExact(Long.parseLong((String) o.get("id")));
+        String name = (String) o.get("name");
+        boolean online = (boolean) o.get("online");
+        int unreadMessages = Math.toIntExact(Long.parseLong((String) o.get("unreadMessages")));
+        String state = (String) o.get("state");
+        ArrayList<Message> messages = parseMessages((JSONArray) o.get("messages"));
+        return new Friend(id, name, state, messages, unreadMessages, online);
+    }
+
+    private static Person parsePerson(JSONObject o) {
+        int userId = Math.toIntExact(Long.parseLong((String) o.get("uid")));
+        String userName = (String) o.get("username");
+        boolean online = (boolean) o.get("online");
+        return new Person(userId, userName, online);
+    }
 }

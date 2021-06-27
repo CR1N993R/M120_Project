@@ -20,9 +20,7 @@ public class Client {
 
     public Client(Connection connection) {
         this.connection = connection;
-        connection.setOn("login", this::login);
-        connection.setOn("createUser", this::createUser);
-        connection.setOn("disconnect", this::disconnect);
+        resetListeners();
     }
 
     public void login(String msg) {
@@ -32,10 +30,12 @@ public class Client {
             String password = Hashing.hash((String) object.get("password"));
             if (user.getPassword().equals(password)) {
                 this.user = user;
-                connection.emit("login", user.toJson().toJSONString());
+                user.setOnline(true);
+                connection.emit("login", "Success!");
+                getData("");
                 attachListeners();
             } else {
-                connection.emit("login", "{\"success\": false}");
+                connection.emit("login", "Wrong Username or Password");
             }
         } catch (ParseException | InvalidKeySpecException | NoSuchAlgorithmException ignored) {
         }
@@ -57,10 +57,30 @@ public class Client {
         connection.setOn("createGroup", this::createGroup);
         connection.setOn("groupMessagesRead", this::groupMessagesRead);
         connection.setOn("friendMessagesRead", this::friendMessagesRead);
+        connection.setOn("removeUserFromGroup", this::removeUserFromGroup);
+    }
+
+    private void resetListeners() {
+        connection.removeAllListeners();
+        connection.setOn("login", this::login);
+        connection.setOn("createUser", this::createUser);
+        connection.setOn("disconnect", this::disconnect);
     }
 
     public void logout(String msg) {
+        resetListeners();
+        user.setOnline(false);
         user = null;
+    }
+
+    public void disconnect(String json) {
+        resetListeners();
+        if (user != null) {
+            this.user.setOnline(false);
+            this.user.setMessageEvent(null);
+            this.user = null;
+        }
+        connection.removeAllListeners();
     }
 
     public void sendToUser(String json) {
@@ -123,16 +143,6 @@ public class Client {
         }
     }
 
-    public void disconnect(String json) {
-        System.out.println("disconnected");
-        JSONObject jo = Json.parseJson(json);
-        if (jo != null) {
-            this.user.setMessageEvent(null);
-            this.user = null;
-            connection.removeAllListeners();
-        }
-    }
-
     public void changeGroupName(String json) {
         JSONObject jo = Json.parseJson(json);
         if (jo != null) {
@@ -190,6 +200,15 @@ public class Client {
             String username = (String) jo.get("username");
             String password = (String) jo.get("password");
             new User(username,password);
+        }
+    }
+
+    private void removeUserFromGroup(String json) {
+        JSONObject jo = Json.parseJson(json);
+        if (jo != null) {
+            int friend = Math.toIntExact(Long.parseLong((String) jo.get("userid")));
+            int group = Math.toIntExact(Long.parseLong((String) jo.get("groupId")));
+            user.removeUserFromGroup(group,friend);
         }
     }
 }

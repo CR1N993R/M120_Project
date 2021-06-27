@@ -9,6 +9,8 @@ import java.util.ArrayList;
 @AllArgsConstructor
 public class Group {
     private final long groupId;
+    private final String name;
+    private final int unreadMessages;
     private final ArrayList<Person> users;
     private final ArrayList<Message> messages;
 }

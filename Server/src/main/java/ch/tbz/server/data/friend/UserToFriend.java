@@ -40,9 +40,12 @@ public class UserToFriend {
 
     public JSONObject toJson() {
         JSONObject object = new JSONObject();
+        object.put("id", getChat().getSecondUser(user).getUid());
+        object.put("name", getChat().getSecondUser(user).getUsername());
+        object.put("online", getChat().getSecondUser(user).isOnline());
+        object.put("state", state);
         object.put("unreadMessages", unreadMessages);
-        object.put("users", getChat().getUsersAsJson());
-        object.put("message", getChat().getMessagesAsJson());
+        object.put("messages", getChat().getMessagesAsJson());
         return object;
     }
 
