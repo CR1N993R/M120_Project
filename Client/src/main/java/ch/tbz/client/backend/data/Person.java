@@ -6,14 +6,7 @@ import lombok.Getter;
 @Getter
 @AllArgsConstructor
 public class Person {
-    protected final long userId;
-    protected final String username;
-
-    public long getUserId() {
-        return userId;
-    }
-
-    public String getUsername() {
-        return username;
-    }
+    protected long userId;
+    protected String username;
+    protected boolean online;
 }

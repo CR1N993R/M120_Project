@@ -39,6 +39,9 @@ public class User {
     private String password;
     @Transient
     @Setter
+    private boolean online = false;
+    @Transient
+    @Setter
     private MessageEvent messageEvent;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<UserToFriend> friends = new ArrayList<>();
@@ -50,10 +53,10 @@ public class User {
             this.username = username;
             this.password = Hashing.hash(password);
             Database.persistObject(this);
-            emit("register", "success");
+            emit("register", "Success!");
         } catch (InvalidKeySpecException | NoSuchAlgorithmException ignored) {
         }catch (ConstraintViolationException e){
-            emit("register", "user_already_exists");
+            emit("register", "User Already Exists");
         }
     }
 
@@ -93,17 +96,21 @@ public class User {
         JSONObject object = new JSONObject();
         object.put("username", username);
         object.put("uid", uid);
+        object.put("online", online);
         return object;
     }
 
     public JSONObject getJsonData() {
         JSONObject object = new JSONObject();
-        object.put("friends", getFriendMessages());
-        object.put("group", getGroupMessages());
+        object.put("username", username);
+        object.put("uid", uid);
+        object.put("online", online);
+        object.put("friends", getFriendsAsJson());
+        object.put("group", getGroupAsJson());
         return object;
     }
 
-    public JSONArray getFriendMessages() {
+    public JSONArray getFriendsAsJson() {
         JSONArray array = new JSONArray();
         for (UserToFriend friend : friends) {
             friend.toJson();
@@ -111,7 +118,7 @@ public class User {
         return array;
     }
 
-    public JSONArray getGroupMessages() {
+    public JSONArray getGroupAsJson() {
         JSONArray array = new JSONArray();
         for (UserToGroup group : groups) {
             group.toJson();
@@ -145,9 +152,22 @@ public class User {
 
     public void changeGroupName(int groupId, String name) {
         for (UserToGroup group : groups) {
-            if (group.getId() == groupId) {
+            if (group.getId() == groupId && group.getChat().getUsers().get(0).getUser() == this) {
                 group.getChat().setName(name);
                 return;
+            }
+        }
+    }
+
+    public void removeUserFromGroup(int groupId, int userid){
+        for (UserToGroup group : groups) {
+            if (group.getId() == groupId && group.getChat().getUsers().get(0).getUser() == this){
+                for (UserToGroup user : group.getChat().getUsers()) {
+                    if (user.getUser().uid == userid){
+                        group.getChat().removeUser(user);
+                        return;
+                    }
+                }
             }
         }
     }
@@ -168,7 +188,7 @@ public class User {
         GroupChat chat = Database.getGroupById(groupId);
         User user = Database.getUsersById(userId);
         for (UserToGroup group : groups) {
-            if (group.getChat() == chat){
+            if (group.getChat() == chat && group.getChat().getUsers().get(0).getUser() == this){
                 chat.addUser(user);
                 return;
             }

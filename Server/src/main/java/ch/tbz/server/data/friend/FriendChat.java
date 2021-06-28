@@ -7,6 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import org.hibernate.annotations.GenericGenerator;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -41,12 +42,9 @@ public class FriendChat {
         Database.persistObject(this);
     }
 
-    public JSONArray getUsersAsJson(){
-        JSONArray array = new JSONArray();
-        for (UserToFriend user : users) {
-            array.add(user.toJson());
-        }
-        return array;
+    public JSONObject getFriendAsJson(User user){
+        user = getSecondUser(user);
+        return user.toJson();
     }
 
     public JSONArray getMessagesAsJson(){

@@ -6,11 +6,18 @@ import java.util.ArrayList;
 
 @Getter
 public class User extends Person {
-    private final ArrayList<Group> groups;
-    private final ArrayList<Friend> friends;
+    private ArrayList<Group> groups;
+    private ArrayList<Friend> friends;
 
-    public User(int userId, String username, ArrayList<Group> groups, ArrayList<Friend> friends){
-        super(userId, username);
+    public User(long userId, String username, ArrayList<Group> groups, ArrayList<Friend> friends, boolean online){
+        super(userId, username, online);
+        this.groups = groups;
+        this.friends = friends;
+    }
+
+    public void updateData(long userId, String username, ArrayList<Group> groups, ArrayList<Friend> friends, boolean online){
+        this.userId = userId;
+        this.username = username;
         this.groups = groups;
         this.friends = friends;
     }

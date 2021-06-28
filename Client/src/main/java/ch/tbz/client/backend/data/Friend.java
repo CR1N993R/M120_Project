@@ -10,33 +10,18 @@ public class Friend extends Person implements Chat {
     private final ArrayList<Message> messages;
     private int newMessages;
     private boolean isOn;
+    private final int unreadMessages;
 
-    public Friend(int userId, String name, String state, ArrayList<Message> messages){
-        super(userId, name);
+    public Friend(int userId, String name, String state, ArrayList<Message> messages, int unreadMessages, boolean online){
+        super(userId, name, online);
         this.state = state;
         this.messages = messages;
+        this.unreadMessages = unreadMessages;
     }
 
     public void accept(){
         if (state.equals("received")){
 
         }
-    }
-
-    public String getState() {
-        return state;
-    }
-
-    public boolean isOn() {
-        return isOn;
-    }
-
-    public int getNewMessages() {
-        return newMessages;
-    }
-
-    @Override
-    public ArrayList<Message> getMessage() {
-        return this.messages;
     }
 }
