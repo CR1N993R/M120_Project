@@ -38,7 +38,6 @@ public class User {
     @Setter
     private String password;
     @Transient
-    @Setter
     private boolean online = false;
     @Transient
     @Setter
@@ -217,6 +216,20 @@ public class User {
                 friend.clearUnreadMessages();
                 return;
             }
+        }
+    }
+
+    public void setOnline(boolean state){
+        online = state;
+
+    }
+
+    public void sendOnlineToAll() {
+        for (UserToGroup group : groups) {
+            group.getChat().sendOnline(uid, online);
+        }
+        for (UserToFriend friend : friends) {
+            friend.getChat().sendUpdateState(this);
         }
     }
 }

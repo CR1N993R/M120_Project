@@ -42,11 +42,6 @@ public class FriendChat {
         Database.persistObject(this);
     }
 
-    public JSONObject getFriendAsJson(User user){
-        user = getSecondUser(user);
-        return user.toJson();
-    }
-
     public JSONArray getMessagesAsJson(){
         JSONArray array = new JSONArray();
         for (Message message : messages) {
@@ -73,5 +68,10 @@ public class FriendChat {
         users.get(0).accept();
         users.get(1).accept();
         Database.persistObject(this);
+    }
+
+    public void sendUpdateState(User user){
+        User friend = getSecondUser(user);
+        friend.emit("updateUserStatus", "{\"isGroup\":false, \"userId\":\"" + user.getUid() + "\",\"state\":" + user.isOnline() + "}");
     }
 }

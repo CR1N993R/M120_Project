@@ -12,8 +12,8 @@ public class ServerIconController {
 
     public void init(Group group){
         this.group = group;
-        serverButton.setText(this.group.getGroupname().substring(0, 1));
-        tooltip.setText(this.group.getGroupname());
+        serverButton.setText(this.group.getGroupName().substring(0, 1));
+        tooltip.setText(this.group.getGroupName());
     }
 
     public void clicked(ActionEvent actionEvent) {

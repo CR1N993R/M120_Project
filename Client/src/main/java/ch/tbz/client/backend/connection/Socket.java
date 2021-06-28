@@ -30,9 +30,28 @@ public class Socket {
 
     private static void attachListeners(){
         connection.setOn("getData", Socket::getData);
+        connection.setOn("updateUserStatus", Socket::updateUserStatus);
     }
 
-    private static void login(String username, String password, MessageCallback callback){
+    private static void updateUserStatus(String s) {
+        DataParser.updateUserState(s);
+    }
+
+    private static void getData(String msg){
+        if (user == null) {
+            user = new User();
+        }
+        DataParser.parseData(msg, user);
+        for (UpdateCallback listener : getDataListeners) {
+            CallbackWrapper.update(listener);
+        }
+    }
+
+    public static void emit(String event, String message){
+        connection.emit(event,message);
+    }
+
+    public static void login(String username, String password, MessageCallback callback){
         connection.setOn("login", (s) -> {
             connection.removeAllListenersByEvent("login");
             CallbackWrapper.sendMessage(callback, s);
@@ -40,15 +59,7 @@ public class Socket {
         connection.emit("login", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
     }
 
-    private static void register(String username, String password, MessageCallback callback){
-        connection.setOn("register", (s) -> {
-            connection.removeAllListenersByEvent("register");
-            CallbackWrapper.sendMessage(callback, s);
-        });
-        connection.emit("createUser", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
-    }
-
-    private static void getUsers(String name, UserCallback callback){
+    public static void getUsers(String name, UserCallback callback){
         connection.setOn("getUsers", (s) -> {
             connection.removeAllListenersByEvent("register");
             try {
@@ -59,11 +70,12 @@ public class Socket {
         connection.emit("getUsersByName", "{\"name\":\""+ name +"\"}");
     }
 
-    private static void getData(String msg){
-        DataParser.parseData(msg, user);
-        for (UpdateCallback listener : getDataListeners) {
-            CallbackWrapper.update(listener);
-        }
+    public static void register(String username, String password, MessageCallback callback){
+        connection.setOn("register", (s) -> {
+            connection.removeAllListenersByEvent("register");
+            CallbackWrapper.sendMessage(callback, s);
+        });
+        connection.emit("createUser", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
     }
 
     public static void addGetDataListener(UpdateCallback callback){

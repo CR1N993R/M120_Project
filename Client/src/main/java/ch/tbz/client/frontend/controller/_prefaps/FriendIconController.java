@@ -17,7 +17,7 @@ public class FriendIconController {
         this.friend = friend;
         this.usernameLabel.setText(this.friend.getUsername());
         this.usernameTooltip.setText(this.friend.getUsername());
-        this.newMassageCount.setText(this.friend.getNewMessages() + "");
+        this.newMassageCount.setText(this.friend.getUnreadMessages() + "");
         this.statusCircle.setFill(this.friend.isOn() ? Color.GREEN : Color.RED);
     }
 }
