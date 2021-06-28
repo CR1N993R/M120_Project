@@ -8,7 +8,6 @@ import java.util.ArrayList;
 public class Friend extends Person implements Chat {
     private final String state; //accepted, send, received
     private final ArrayList<Message> messages;
-    private int newMessages;
     private boolean isOn;
     private final int unreadMessages;
 
@@ -23,5 +22,18 @@ public class Friend extends Person implements Chat {
         if (state.equals("received")){
 
         }
+    }
+
+    public String getState() {
+        return state;
+    }
+
+    public boolean isOn() {
+        return isOn;
+    }
+
+    @Override
+    public ArrayList<Message> getMessage() {
+        return this.messages;
     }
 }

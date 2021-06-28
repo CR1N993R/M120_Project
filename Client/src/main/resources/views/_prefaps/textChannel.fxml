@@ -3,16 +3,11 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<ScrollPane hbarPolicy="NEVER" prefHeight="361.0" prefWidth="137.0" vbarPolicy="NEVER"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ch.tbz.client.frontend.controller._prefaps.TextChannelController">
-    <content>
-        <VBox fx:id="vboxFriends" minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="137.0">
-            <Label fx:id="channelName" prefHeight="18.0" prefWidth="135.0"/>
-            <ScrollPane fx:id="member" prefHeight="350.0" prefWidth="138.0">
+<AnchorPane prefHeight="361.0" prefWidth="137.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.TextChannelController">
+    <Label fx:id="channelName" prefHeight="18.0" prefWidth="135.0" />
+        <ScrollPane hbarPolicy="never" vbarPolicy="never" layoutY="18.0" minHeight="0.0" minWidth="0.0" prefHeight="343.0" prefWidth="138.0">
+            <VBox fx:id="member" prefHeight="350.0" prefWidth="138.0">
 
-            </ScrollPane>
-        </VBox>
-
-    </content>
-</ScrollPane>
+            </VBox>
+        </ScrollPane>
+</AnchorPane>

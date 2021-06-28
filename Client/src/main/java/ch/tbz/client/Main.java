@@ -5,6 +5,12 @@ import javafx.application.Application;
 import javafx.stage.Stage;
 
 public class Main extends Application {
+
+    public void load() {
+        UIManager.close();
+        start(UIManager.primaryStage);
+    }
+
     @Override
     public void start(Stage primaryStage) {
         new Data();

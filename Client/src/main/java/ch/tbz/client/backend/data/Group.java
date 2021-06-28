@@ -8,6 +8,7 @@ import java.util.ArrayList;
 @Getter
 @AllArgsConstructor
 public class Group implements Chat{
+    private final String groupname;
     private final long groupId;
     private final String name;
     private final int unreadMessages;

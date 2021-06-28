@@ -23,7 +23,7 @@ public class ChatController {
         vboxMessages.getChildren().clear();
         for(Message message : messages){
             try {
-                FXMLLoader loader = new FXMLLoader(MessageController.class.getResource("MessageController.fxml"));
+                FXMLLoader loader = new FXMLLoader(MessageController.class.getClassLoader().getResource("MessageController.fxml"));
                 Parent root = loader.load();
                 MessageController controller = loader.getController();
                 controller.init(message);

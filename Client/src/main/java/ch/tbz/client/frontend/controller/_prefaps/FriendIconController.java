@@ -4,7 +4,6 @@ import ch.tbz.client.backend.data.Friend;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
 import javafx.scene.paint.Color;
-import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class FriendIconController {
@@ -19,6 +18,6 @@ public class FriendIconController {
         this.usernameLabel.setText(this.friend.getUsername());
         this.usernameTooltip.setText(this.friend.getUsername());
         this.newMassageCount.setText(this.friend.getNewMessages() + "");
-        this.statusCircle.setFill(this.friend.isOn() ? Color.GREEN : javafx.scene.paint.Color.RED);
+        this.statusCircle.setFill(this.friend.isOn() ? Color.GREEN : Color.RED);
     }
 }

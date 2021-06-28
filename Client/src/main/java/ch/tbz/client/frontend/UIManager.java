@@ -28,4 +28,9 @@ public class UIManager {
     public static void login(){
 
     }
+
+    public static void close() {
+        primaryStage.close();
+        secondaryStage.close();
+    }
 }
