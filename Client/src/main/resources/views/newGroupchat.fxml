@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="245.0" prefWidth="242.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views.NewGroupchat">
+   <children>
+      <TextField fx:id="name" layoutX="14.0" layoutY="14.0" prefHeight="26.0" prefWidth="211.0" promptText="Groupchat name" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.80000000000001" AnchorPane.topAnchor="14.0" />
+      <ScrollPane hbarPolicy="never" layoutX="14.0" layoutY="51.0" prefHeight="142.0" prefWidth="211.0" vbarPolicy="never" AnchorPane.bottomAnchor="51.599999999999994" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="16.80000000000001" AnchorPane.topAnchor="51.0">
+        <content>
+          <VBox fx:id="vbox" minHeight="0.0" minWidth="0.0" prefHeight="142.0" prefWidth="209.0" />
+        </content>
+      </ScrollPane>
+      <Button onAction="#createClicked" layoutX="173.0" layoutY="206.0" mnemonicParsing="false" text="Create" AnchorPane.bottomAnchor="13.399999999999999" AnchorPane.leftAnchor="173.0" AnchorPane.rightAnchor="18.6" />
+   </children>
+</AnchorPane>

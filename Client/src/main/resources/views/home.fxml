@@ -2,20 +2,36 @@
 
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
+<?import javafx.scene.shape.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.HomeController">
+<AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.HomeController">
     <children>
         <AnchorPane prefHeight="400.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
                 <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" prefHeight="400.0" prefWidth="71.0" vbarPolicy="NEVER">
                     <content>
-                        <VBox fx:id="vboxServer" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="71.0">
+                        <VBox fx:id="vboxServer" minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="71.0">
                             <children>
-
-                            </children></VBox>
+                                <AnchorPane prefHeight="65.0" prefWidth="71.0">
+                                    <Button layoutX="5.0" layoutY="2.0" onAction="#friendsClicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;">
+                                        <tooltip>
+                                            <Tooltip fx:id="tooltip" />
+                                        </tooltip>
+                                    </Button>
+                                </AnchorPane>
+                            <Line endX="-25.0" startX="-100.0" />
+                            </children>
+                        </VBox>
                     </content>
                 </ScrollPane>
+                <AnchorPane layoutY="334.0" prefHeight="65.0" prefWidth="71.0">
+                    <Button layoutX="5.0" layoutY="2.0" onAction="#friendsClicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;" text="+">
+                        <tooltip>
+                            <Tooltip fx:id="tooltipAddServer" />
+                        </tooltip>
+                    </Button>
+                </AnchorPane>
             </children></AnchorPane>
         <AnchorPane layoutX="70.0" prefHeight="400.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="0.0">
             <children>
