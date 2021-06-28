@@ -1,8 +1,6 @@
 package ch.tbz.client.frontend.controller._prefaps;
 
 import ch.tbz.client.backend.data.Chat;
-import ch.tbz.client.backend.data.Friend;
-import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.backend.data.Message;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
@@ -19,7 +17,7 @@ public class ChatController {
     public ArrayList<Message> messages;
 
     public void init(Chat chatMessages){
-        this.messages = chatMessages.getMessage();
+        this.messages = chatMessages.getMessages();
         vboxMessages.getChildren().clear();
         for(Message message : messages){
             try {

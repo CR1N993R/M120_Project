@@ -1,5 +1,6 @@
 package ch.tbz.client.backend.data;
 
+import ch.tbz.client.backend.connection.Socket;
 import lombok.Getter;
 
 import java.util.ArrayList;
@@ -18,10 +19,18 @@ public class Friend extends Person implements Chat {
         this.unreadMessages = unreadMessages;
     }
 
-    public void accept(){
+    public void acceptFriendRequest(long userId){
         if (state.equals("received")){
-
+            Socket.emit("acceptFriendRequest", "{\"userid\":\"" + userId + "\"}");
         }
+    }
+
+    public void friendMessagesRead(long userId) {
+        Socket.emit("friendMessagesRead", "{\"userid\":\"" + userId + "\"}");
+    }
+
+    public void declineFriendRequest(long userId) {
+        Socket.emit("declineFriendRequest", "{\"userid\":\"" + userId + "\"}");
     }
 
     public String getState() {
@@ -32,8 +41,7 @@ public class Friend extends Person implements Chat {
         return isOn;
     }
 
-    @Override
-    public ArrayList<Message> getMessage() {
-        return this.messages;
+    public void sendToFriend(long userId, String msg){
+        Socket.emit("sendToUser", "{\"userid\":\"" + userId + ", \"msg\":\"" + msg + "\"}");
     }
 }

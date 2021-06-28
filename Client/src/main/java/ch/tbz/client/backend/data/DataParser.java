@@ -1,5 +1,6 @@
 package ch.tbz.client.backend.data;
 
+import ch.tbz.client.backend.connection.Socket;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -87,5 +88,39 @@ public class DataParser {
         String userName = (String) o.get("username");
         boolean online = (boolean) o.get("online");
         return new Person(userId, userName, online);
+    }
+
+    public static void updateUserState(String json){
+        try {
+            JSONObject obj = (JSONObject) new JSONParser().parse(json);
+            boolean isGroup = (boolean) obj.get("isGroup");
+            long userId = Long.parseLong((String) obj.get("userId"));
+            boolean state = (boolean) obj.get("state");
+            if (isGroup){
+                updateGroupMemberState(userId, state);
+            }else{
+                updateFriendState(userId, state);
+            }
+        } catch (ParseException e) {
+            e.printStackTrace();
+        }
+    }
+
+    private static void updateFriendState(long userId, boolean online){
+        for (Friend friend : Socket.getUser().getFriends()) {
+            if (friend.getUserId() == userId) {
+                friend.setOnline(online);
+            }
+        }
+    }
+
+    private static void updateGroupMemberState(long userId, boolean online) {
+        for (Group group : Socket.getUser().getGroups()) {
+            for (Person user : group.getUsers()) {
+                if (user.userId == userId){
+                    user.setOnline(online);
+                }
+            }
+        }
     }
 }

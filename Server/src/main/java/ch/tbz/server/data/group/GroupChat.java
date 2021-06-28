@@ -34,32 +34,32 @@ public class GroupChat {
         this.users.add(owner);
     }
 
-    public void setName(String name){
+    public void setName(String name) {
         this.name = name;
+        sendDataToUsers();
+        Database.persistObject(this);
+    }
+
+    public void removeUser(UserToGroup user) {
+        users.remove(user);
+        sendDataToUsers();
+        Database.persistObject(this);
+    }
+
+    public void sendDataToUsers() {
         for (UserToGroup user : users) {
             user.getUser().sendData();
         }
-        Database.persistObject(this);
     }
 
-    public void removeUser(UserToGroup user){
-        users.remove(user);
-        for (UserToGroup userToGroup : users) {
-            userToGroup.getUser().sendData();
-        }
-        Database.persistObject(this);
-    }
-
-    public void addUser(User user){
+    public void addUser(User user) {
         this.users.add(new UserToGroup(user, this));
-        for (UserToGroup userToGroup : users) {
-            userToGroup.getUser().sendData();
-        }
+        sendDataToUsers();
         Database.persistObject(this);
     }
 
-    public void addMessage(String text, User user){
-        Message message = new Message(text,user);
+    public void addMessage(String text, User user) {
+        Message message = new Message(text, user);
         messages.add(message);
         for (UserToGroup userToChat : users) {
             userToChat.receivedMessage();
@@ -67,7 +67,13 @@ public class GroupChat {
         Database.persistObject(this);
     }
 
-    public JSONArray getUsersAsJson(){
+    public void sendOnline(long userId, boolean state) {
+        for (UserToGroup user : users) {
+            user.getUser().emit("updateUserStatus", "{\"isGroup\":" + true + ", \"userId\":\"" + userId + "\", \"state\": " + state + "}");
+        }
+    }
+
+    public JSONArray getUsersAsJson() {
         JSONArray array = new JSONArray();
         for (UserToGroup user : users) {
             array.add(user.toJson());
@@ -75,7 +81,7 @@ public class GroupChat {
         return array;
     }
 
-    public JSONArray getMessagesAsJson(){
+    public JSONArray getMessagesAsJson() {
         JSONArray array = new JSONArray();
         for (Message message : messages) {
             array.add(message.toJson());
