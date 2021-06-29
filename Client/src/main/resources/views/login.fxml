@@ -4,12 +4,10 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="192.0" prefWidth="257.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.LoginController">
-    <children>
-        <TextField fx:id="emailTb" layoutX="17.0" layoutY="45.0" prefHeight="25.0" prefWidth="229.0" promptText="email" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
-        <PasswordField fx:id="pwdTb" layoutX="17.0" layoutY="88.0" prefHeight="25.0" prefWidth="229.0" promptText="password" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
-        <Label layoutX="17.0" layoutY="117.0" onMouseClicked="#forgotPasswordClicked" prefHeight="17.0" prefWidth="229.0" text="Passwort vergessen" underline="true" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
-        <Button layoutX="17.0" layoutY="137.0" mnemonicParsing="false" text="Login" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="194.0" />
-        <Label layoutX="17.0" layoutY="166.0" onMouseClicked="#registerClicked" prefHeight="17.0" prefWidth="229.0" text="Register" underline="true" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
-        <Label alignment="CENTER" layoutX="46.0" layoutY="14.0" prefHeight="25.0" prefWidth="171.0" text="Willkommen zurück!" textAlignment="CENTER" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="40.0" />
-    </children>
+    <TextField fx:id="emailTb" layoutX="17.0" layoutY="45.0" prefHeight="25.0" prefWidth="229.0" promptText="email" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
+    <PasswordField fx:id="pwdTb" layoutX="17.0" layoutY="88.0" prefHeight="25.0" prefWidth="229.0" promptText="password" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
+    <Label layoutX="17.0" layoutY="117.0" onMouseClicked="#forgotPasswordClicked" prefHeight="17.0" prefWidth="229.0" text="Passwort vergessen" underline="true" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
+    <Button layoutX="17.0" layoutY="137.0" mnemonicParsing="false" text="Login" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="194.0" />
+    <Label layoutX="17.0" layoutY="166.0" onMouseClicked="#registerClicked" prefHeight="17.0" prefWidth="229.0" text="Register" underline="true" AnchorPane.leftAnchor="17.0" AnchorPane.rightAnchor="11.0" />
+    <Label alignment="CENTER" layoutX="46.0" layoutY="14.0" prefHeight="25.0" prefWidth="171.0" text="Willkommen zurück!" textAlignment="CENTER" AnchorPane.leftAnchor="46.0" AnchorPane.rightAnchor="40.0" />
 </AnchorPane>

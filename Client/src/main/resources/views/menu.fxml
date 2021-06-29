@@ -10,6 +10,5 @@
     <Button layoutX="25" layoutY="270" onAction="#toRequests" prefHeight="30" prefWidth="175" text="Requests" />
     <Line endX="225" endY="375" startX="225" startY="25" />
     <AnchorPane layoutX="250" layoutY="25" prefHeight="350" prefWidth="325">
-
     </AnchorPane>
 </AnchorPane>

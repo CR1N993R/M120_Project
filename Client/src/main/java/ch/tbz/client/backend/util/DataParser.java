@@ -1,6 +1,7 @@
-package ch.tbz.client.backend.data;
+package ch.tbz.client.backend.util;
 
 import ch.tbz.client.backend.connection.Socket;
+import ch.tbz.client.backend.data.*;
 import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
@@ -117,7 +118,7 @@ public class DataParser {
     private static void updateGroupMemberState(long userId, boolean online) {
         for (Group group : Socket.getUser().getGroups()) {
             for (Person user : group.getUsers()) {
-                if (user.userId == userId){
+                if (user.getUserId() == userId){
                     user.setOnline(online);
                 }
             }

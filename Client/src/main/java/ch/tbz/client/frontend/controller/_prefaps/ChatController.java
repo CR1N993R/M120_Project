@@ -1,6 +1,6 @@
 package ch.tbz.client.frontend.controller._prefaps;
 
-import ch.tbz.client.backend.data.Chat;
+import ch.tbz.client.backend.interfaces.Chat;
 import ch.tbz.client.backend.data.Message;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;

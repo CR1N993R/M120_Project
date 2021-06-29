@@ -1,4 +1,6 @@
-package ch.tbz.client.backend.data;
+package ch.tbz.client.backend.interfaces;
+
+import ch.tbz.client.backend.data.Message;
 
 import java.util.ArrayList;
 

@@ -5,40 +5,28 @@
 <?import javafx.scene.text.*?>
 
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.HomeController">
-    <children>
-        <AnchorPane prefHeight="400.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" prefHeight="400.0" prefWidth="71.0" vbarPolicy="NEVER">
-                    <content>
-                        <VBox fx:id="vboxServer" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="71.0">
-                            <children>
-
-                            </children></VBox>
-                    </content>
-                </ScrollPane>
-            </children></AnchorPane>
-        <AnchorPane layoutX="70.0" prefHeight="400.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="0.0">
-            <children>
-                <AnchorPane layoutY="361.0" prefHeight="39.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
-                    <children>
-                        <Label fx:id="usernameLabel" prefHeight="17.0" prefWidth="104.0">
-                            <font>
-                                <Font name="System Bold" size="12.0" />
-                            </font>
-                        </Label>
-                        <Label fx:id="uniqueIdLabel" layoutY="17.0" prefHeight="17.0" prefWidth="104.0" />
-                        <Label layoutX="115.0" layoutY="6.0" onMouseClicked="#settingsClicked" text="⚙">
-                            <font>
-                                <Font size="19.0" />
-                            </font>
-                        </Label>
-                    </children></AnchorPane>
-                <ScrollPane hbarPolicy="NEVER" prefHeight="361.0" prefWidth="137.0" vbarPolicy="NEVER">
-                    <content>
-                        <VBox fx:id="vboxFriends" minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="137.0" />
-                    </content>
-                </ScrollPane>
-            </children></AnchorPane>
-        <AnchorPane fx:id="chat" layoutX="213.0" prefHeight="400.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0" />
-    </children>
+    <AnchorPane prefHeight="400.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" prefHeight="400.0" prefWidth="71.0" vbarPolicy="NEVER">
+            <VBox fx:id="vboxServer" minHeight="0.0" minWidth="0.0" prefHeight="400.0" prefWidth="71.0"/>
+        </ScrollPane>
+    </AnchorPane>
+    <AnchorPane layoutX="70.0" prefHeight="400.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutY="361.0" prefHeight="39.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
+            <Label fx:id="usernameLabel" prefHeight="17.0" prefWidth="104.0">
+                <font>
+                    <Font name="System Bold" size="12.0"/>
+                </font>
+            </Label>
+            <Label fx:id="uniqueIdLabel" layoutY="17.0" prefHeight="17.0" prefWidth="104.0"/>
+            <Label layoutX="115.0" layoutY="6.0" onMouseClicked="#settingsClicked" text="⚙">
+                <font>
+                    <Font size="19.0"/>
+                </font>
+            </Label>
+        </AnchorPane>
+        <ScrollPane hbarPolicy="NEVER" prefHeight="361.0" prefWidth="137.0" vbarPolicy="NEVER">
+            <VBox fx:id="vboxFriends" minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="137.0"/>
+        </ScrollPane>
+    </AnchorPane>
+    <AnchorPane fx:id="chat" layoutX="213.0" prefHeight="400.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0"/>
 </AnchorPane>

@@ -4,11 +4,9 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="179.0" prefWidth="207.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.RegisterController">
-    <children>
-        <TextField fx:id="usernameTb" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="177.0" promptText="Username" />
-        <TextField fx:id="emailTb" layoutX="14.0" layoutY="50.0" prefHeight="25.0" prefWidth="177.0" promptText="Email" />
-        <PasswordField fx:id="pwdTb" layoutX="14.0" layoutY="85.0" prefHeight="25.0" prefWidth="177.0" promptText="Password" />
-        <Label layoutX="14.0" layoutY="119.0" onMouseClicked="#haveAccountClicked" prefHeight="17.0" prefWidth="177.0" text="Sie haben bereits einen Account?" underline="true" />
-        <Button layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#registerClicked" text="Register" />
-    </children>
+    <TextField fx:id="usernameTb" layoutX="14.0" layoutY="14.0" prefHeight="25.0" prefWidth="177.0" promptText="Username"/>
+    <TextField fx:id="emailTb" layoutX="14.0" layoutY="50.0" prefHeight="25.0" prefWidth="177.0" promptText="Email"/>
+    <PasswordField fx:id="pwdTb" layoutX="14.0" layoutY="85.0" prefHeight="25.0" prefWidth="177.0" promptText="Password"/>
+    <Label layoutX="14.0" layoutY="119.0" onMouseClicked="#haveAccountClicked" prefHeight="17.0" prefWidth="177.0" text="Sie haben bereits einen Account?" underline="true"/>
+    <Button layoutX="14.0" layoutY="146.0" mnemonicParsing="false" onAction="#registerClicked" text="Register"/>
 </AnchorPane>

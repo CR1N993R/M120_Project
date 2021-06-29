@@ -1,4 +1,4 @@
-package ch.tbz.client.backend;
+package ch.tbz.client.backend.util;
 
 public class Validator {
     public String validateRegister(String username, String email, String pwd) {

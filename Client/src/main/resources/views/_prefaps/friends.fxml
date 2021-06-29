@@ -2,12 +2,6 @@
 
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.layout.VBox?>
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendsController"
-            prefHeight="350" prefWidth="325">
-
-    <children>
-        <VBox fx:id="list" layoutX="25" layoutY="25.0" prefHeight="300.0" prefWidth="275.0"/>
-    </children>
+<AnchorPane xmlns="http://javafx.com/javafx" xmlns:fx="http://javafx.com/fxml" fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendsController" prefHeight="350" prefWidth="325">
+    <VBox fx:id="list" layoutX="25" layoutY="25.0" prefHeight="300.0" prefWidth="275.0"/>
 </AnchorPane>

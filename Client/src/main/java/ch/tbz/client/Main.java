@@ -8,14 +8,14 @@ import javafx.stage.Stage;
 public class Main extends Application {
 
     public void load() {
+        Socket.init();
         UIManager.close();
         start(UIManager.primaryStage);
     }
 
     @Override
     public void start(Stage primaryStage) {
-        Socket.init();
-        new Data();
+        primaryStage.show();
         UIManager.primaryStage = primaryStage;
         UIManager.secondaryStage = new Stage();
         UIManager.login();

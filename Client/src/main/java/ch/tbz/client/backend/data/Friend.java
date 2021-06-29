@@ -1,6 +1,7 @@
 package ch.tbz.client.backend.data;
 
 import ch.tbz.client.backend.connection.Socket;
+import ch.tbz.client.backend.interfaces.Chat;
 import lombok.Getter;
 
 import java.util.ArrayList;

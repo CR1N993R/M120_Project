@@ -1,7 +1,7 @@
 package ch.tbz.client.backend.connection;
 
 import ch.fenix.clientwrapper.Connection;
-import ch.tbz.client.backend.data.DataParser;
+import ch.tbz.client.backend.util.DataParser;
 import ch.tbz.client.backend.data.User;
 import ch.tbz.client.backend.interfaces.*;
 import lombok.Getter;
