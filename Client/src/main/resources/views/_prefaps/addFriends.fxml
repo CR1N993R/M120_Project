@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+
+<AnchorPane prefHeight="126.0" prefWidth="370.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.AddFriendController">
+   <children>
+      <TextField fx:id="idTF" layoutX="13.0" layoutY="62.0" prefHeight="26.0" prefWidth="299.0" />
+      <Button onAction="#send" layoutX="312.0" layoutY="62.0" mnemonicParsing="false" text="Send" />
+      <Label layoutX="13.0" layoutY="14.0" prefHeight="26.0" prefWidth="344.0" text="Freund hinzufügen">
+         <font>
+            <Font name="System Bold" size="18.0" />
+         </font>
+      </Label>
+      <Label fx:id="errorMessageLabel" layoutX="14.0" layoutY="95.0" prefHeight="18.0" prefWidth="344.0" />
+   </children>
+</AnchorPane>

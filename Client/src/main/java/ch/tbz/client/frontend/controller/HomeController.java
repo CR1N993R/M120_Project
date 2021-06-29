@@ -3,9 +3,12 @@ package ch.tbz.client.frontend.controller;
 import ch.tbz.client.backend.data.*;
 import ch.tbz.client.backend.interfaces.Chat;
 import ch.tbz.client.frontend.controller._prefaps.*;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
+import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
@@ -18,12 +21,16 @@ public class HomeController {
     public Label uniqueIdLabel;
     public VBox vboxFriends;
     public AnchorPane chat;
+    public Tooltip tooltipAddServer;
+    public Tooltip tooltip;
     private User user;
 
     public void init(User user) {
         this.user = user;
         this.usernameLabel.setText(this.user.getUsername());
         this.uniqueIdLabel.setText(this.user.getUserId() + "");
+        tooltipAddServer.setText("New Groupchat");
+        tooltip.setText("Show Chats with friends");
         initServers();
         initFriends();
     }
@@ -32,6 +39,8 @@ public class HomeController {
         this.user = user;
         this.usernameLabel.setText(this.user.getUsername());
         this.uniqueIdLabel.setText(this.user.getUserId() + "");
+        tooltipAddServer.setText("New Groupchat");
+        tooltip.setText("Show Chats with friends");
         initServers();
         initFriends();
         initChat(friend);
@@ -41,6 +50,8 @@ public class HomeController {
         this.user = user;
         this.usernameLabel.setText(this.user.getUsername());
         this.uniqueIdLabel.setText(this.user.getUserId() + "");
+        tooltipAddServer.setText("New Groupchat");
+        tooltip.setText("Show Chats with friends");
         initServers();
         initServerBar();
         initChat(group);
@@ -78,13 +89,6 @@ public class HomeController {
 
     private void initServers() {
         vboxServer.getChildren().clear();
-        try {
-            FXMLLoader loader = new FXMLLoader(ServerIconController.class.getClassLoader().getResource("serverIcon.fxml"));
-            Parent root = loader.load();
-            vboxServer.getChildren().add(root);
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
         for (Group group : user.getGroups()) {
             try {
                 FXMLLoader loader = new FXMLLoader(ServerIconController.class.getClassLoader().getResource("serverIcon.fxml"));
@@ -99,5 +103,8 @@ public class HomeController {
     }
 
     public void settingsClicked(MouseEvent mouseEvent) {
+    }
+
+    public void friendsClicked(ActionEvent actionEvent) {
     }
 }
