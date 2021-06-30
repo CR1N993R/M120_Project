@@ -15,7 +15,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class HomeController {
+public class HomeController extends ControllerBase{
     public VBox vboxServer;
     public Label usernameLabel;
     public Label uniqueIdLabel;

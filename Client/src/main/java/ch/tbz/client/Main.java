@@ -15,6 +15,9 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) {
+        Socket.init();
+        data = new Data();
+        DataProperties.loadData();
         primaryStage.show();
         UIManager.primaryStage = primaryStage;
         UIManager.secondaryStage = new Stage();
