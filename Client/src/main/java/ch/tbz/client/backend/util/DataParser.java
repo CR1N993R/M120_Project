@@ -84,7 +84,7 @@ public class DataParser {
         return new Friend(id, name, state, messages, unreadMessages, online);
     }
 
-    private static Person parsePerson(JSONObject o) {
+    public static Person parsePerson(JSONObject o) {
         int userId = Math.toIntExact(Long.parseLong((String) o.get("uid")));
         String userName = (String) o.get("username");
         boolean online = (boolean) o.get("online");

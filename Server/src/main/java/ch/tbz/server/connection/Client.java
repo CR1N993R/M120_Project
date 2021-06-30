@@ -50,7 +50,7 @@ public class Client {
         connection.setOn("sendFriendRequest", this::sendFriendRequest);
         connection.setOn("declineFriendRequest", this::declineFriendRequest);
         connection.setOn("acceptFriendRequest", this::acceptFriendRequest);
-        connection.setOn("getUsersByName", this::getUsersByName);
+        connection.setOn("getUserById", this::getUserById);
         connection.setOn("changeGroupName", this::changeGroupName);
         connection.setOn("leaveGroup", this::leaveGroup);
         connection.setOn("addUserToGroup", this::addUserToGroup);
@@ -130,16 +130,12 @@ public class Client {
         }
     }
 
-    public void getUsersByName(String json) {
+    public void getUserById(String json) {
         JSONObject jo = Json.parseJson(json);
         if (jo != null) {
-            String search = (String) jo.get("name");
-            List<User> result = Database.getUsersByName(search);
-            JSONArray jsonArray = new JSONArray();
-            for (User user : result) {
-                jsonArray.add(user.toJson());
-            }
-            connection.emit("getUsersByName", jsonArray.toJSONString());
+            int search = Math.toIntExact(Long.parseLong((String) jo.get("id")));
+            User result = Database.getUsersById(search);
+            connection.emit("getUsersByName", result.toJson().toJSONString());
         }
     }
 

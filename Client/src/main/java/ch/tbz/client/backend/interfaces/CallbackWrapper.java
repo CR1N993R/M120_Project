@@ -16,7 +16,7 @@ public abstract class CallbackWrapper {
         Platform.runLater(messageCallback::update);
     }
 
-    public static void sendPersons(UserCallback messageCallback, ArrayList<Person> people){
+    public static void sendPersons(UserCallback messageCallback, Person people){
         Platform.runLater(() -> {
             messageCallback.sendPersons(people);
         });

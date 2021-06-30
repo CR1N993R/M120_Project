@@ -6,6 +6,7 @@ import ch.tbz.client.backend.data.User;
 import ch.tbz.client.backend.interfaces.*;
 import lombok.Getter;
 import org.json.simple.JSONArray;
+import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
@@ -59,15 +60,15 @@ public class Socket {
         connection.emit("login", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
     }
 
-    public static void getUsers(String name, UserCallback callback){
+    public static void getUsers(String id, UserCallback callback){
         connection.setOn("getUsers", (s) -> {
             connection.removeAllListenersByEvent("register");
             try {
-                JSONArray array = (JSONArray) new JSONParser().parse(s);
-                CallbackWrapper.sendPersons(callback, DataParser.parsePersons(array));
+                JSONObject user = (JSONObject) new JSONParser().parse(s);
+                CallbackWrapper.sendPersons(callback, DataParser.parsePerson(user));
             } catch (ParseException ignored) { }
         });
-        connection.emit("getUsersByName", "{\"name\":\""+ name +"\"}");
+        connection.emit("getUserById", "{\"id\":\""+ id +"\"}");
     }
 
     public static void register(String username, String password, MessageCallback callback){

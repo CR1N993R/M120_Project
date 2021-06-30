@@ -8,9 +8,8 @@ import java.util.ArrayList;
 
 @Getter
 public class Friend extends Person implements Chat {
-    private final String state; //accepted, send, received
+    private final String state; //accepted, sent, received
     private final ArrayList<Message> messages;
-    private boolean isOn;
     private final int unreadMessages;
 
     public Friend(int userId, String name, String state, ArrayList<Message> messages, int unreadMessages, boolean online){
@@ -20,29 +19,25 @@ public class Friend extends Person implements Chat {
         this.unreadMessages = unreadMessages;
     }
 
-    public void acceptFriendRequest(long userId){
+    public void acceptFriendRequest(){
         if (state.equals("received")){
-            Socket.emit("acceptFriendRequest", "{\"userid\":\"" + userId + "\"}");
+            Socket.emit("acceptFriendRequest", "{\"userid\":\"" + this.userId + "\"}");
         }
     }
 
-    public void friendMessagesRead(long userId) {
-        Socket.emit("friendMessagesRead", "{\"userid\":\"" + userId + "\"}");
+    public void friendMessagesRead() {
+        Socket.emit("friendMessagesRead", "{\"userid\":\"" + this.userId + "\"}");
     }
 
-    public void declineFriendRequest(long userId) {
-        Socket.emit("declineFriendRequest", "{\"userid\":\"" + userId + "\"}");
+    public void declineFriendRequest() {
+        Socket.emit("declineFriendRequest", "{\"userid\":\"" + this.userId + "\"}");
     }
 
     public String getState() {
         return state;
     }
 
-    public boolean isOn() {
-        return isOn;
-    }
-
-    public void sendToFriend(long userId, String msg){
-        Socket.emit("sendToUser", "{\"userid\":\"" + userId + ", \"msg\":\"" + msg + "\"}");
+    public void sendToFriend(String msg){
+        Socket.emit("sendToUser", "{\"userid\":\"" + this.userId + ", \"msg\":\"" + msg + "\"}");
     }
 }
