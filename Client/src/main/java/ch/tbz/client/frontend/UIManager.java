@@ -1,9 +1,10 @@
 package ch.tbz.client.frontend;
 
 import ch.tbz.client.Data;
-import ch.tbz.client.backend.data.DataProperties;
+import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
+import ch.tbz.client.backend.util.DataProperties;
 import ch.tbz.client.frontend.controller.ControllerBase;
 import ch.tbz.client.Main;
 import javafx.fxml.FXMLLoader;
@@ -44,15 +45,15 @@ public class UIManager {
     }
 
     public static void home(){
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Main.data.getUser());
+        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser());
     }
 
     public static void home(Friend friend){
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Main.data.getUser(), friend);
+        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), friend);
     }
 
     public static void home(Group group){
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Main.data.getUser(), group);
+        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), group);
     }
 
     public static void close() {
