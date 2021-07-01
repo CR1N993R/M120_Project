@@ -5,7 +5,6 @@ import ch.tbz.client.backend.util.DataParser;
 import ch.tbz.client.backend.data.User;
 import ch.tbz.client.backend.interfaces.*;
 import lombok.Getter;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
@@ -60,12 +59,16 @@ public class Socket {
         connection.emit("login", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
     }
 
-    public static void getUsers(String id, UserCallback callback){
-        connection.setOn("getUsers", (s) -> {
+    public static void getUser(String id, UserCallback callback){
+        connection.setOn("getUserById", (s) -> {
             connection.removeAllListenersByEvent("register");
             try {
-                JSONObject user = (JSONObject) new JSONParser().parse(s);
-                CallbackWrapper.sendPersons(callback, DataParser.parsePerson(user));
+                if (s.length() > 0) {
+                    JSONObject user = (JSONObject) new JSONParser().parse(s);
+                    CallbackWrapper.sendPersons(callback, DataParser.parsePerson(user));
+                }else {
+                    CallbackWrapper.sendPersons(callback, null);
+                }
             } catch (ParseException ignored) { }
         });
         connection.emit("getUserById", "{\"id\":\""+ id +"\"}");
@@ -76,7 +79,7 @@ public class Socket {
             connection.removeAllListenersByEvent("register");
             CallbackWrapper.sendMessage(callback, s);
         });
-        connection.emit("createUser", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
+        connection.emit("createUser", "{\"username\":\""+ username +"\",\"password\":\"" + password + "\"}");
     }
 
     public static void addGetDataListener(UpdateCallback callback){

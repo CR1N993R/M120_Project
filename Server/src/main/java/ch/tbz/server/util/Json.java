@@ -9,6 +9,7 @@ public class Json {
         try{
             return (JSONObject) new JSONParser().parse(json);
         }catch (ParseException e){
+            e.printStackTrace();
             return null;
         }
     }
