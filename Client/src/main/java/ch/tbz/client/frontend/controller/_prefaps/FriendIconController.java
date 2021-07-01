@@ -1,9 +1,19 @@
 package ch.tbz.client.frontend.controller._prefaps;
 
+import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
+import ch.tbz.client.backend.data.Group;
+import ch.tbz.client.frontend.UIManager;
+import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.scene.control.Label;
+import javafx.scene.control.Menu;
+import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
+import javafx.scene.input.MouseButton;
+import javafx.scene.input.MouseEvent;
 import javafx.scene.paint.Color;
+import javafx.scene.paint.Paint;
 import javafx.scene.shape.Circle;
 
 public class FriendIconController {
