@@ -9,7 +9,7 @@ import java.util.ArrayList;
 
 @Getter
 @AllArgsConstructor
-public class Group implements Chat {
+public class Group implements Chat{
     private final long groupId;
     private final String groupName;
     private final int unreadMessages;
@@ -38,15 +38,5 @@ public class Group implements Chat {
 
     public void sendMessage(String msg) {
         Socket.emit("removeUserFromGroup", "{\"msg\":\"" + msg + "\", \"groupId\":\""+ groupId + "\"}");
-    }
-
-    @Override
-    public Friend getFriend() {
-        return null;
-    }
-
-    @Override
-    public Group getGroup() {
-        return this;
     }
 }

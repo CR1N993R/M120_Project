@@ -3,8 +3,8 @@ package ch.tbz.client.frontend.controller._prefaps;
 import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
-import ch.tbz.client.backend.interfaces.Chat;
 import ch.tbz.client.backend.data.Message;
+import ch.tbz.client.backend.interfaces.Chat;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -24,10 +24,13 @@ public class ChatController {
 
     public void init(Chat chatMessages){
         this.messages = chatMessages.getMessages();
-        this.friend = chatMessages.getFriend();
-        this.group = chatMessages.getGroup();
-        type = this.friend==null&&this.group!=null ? "group" : "friend";
-        type = this.group==null&&this.friend!=null ? "friend" : "group";
+        if (chatMessages instanceof Friend){
+            type = "friend";
+            this.friend = (Friend) chatMessages;
+        }else {
+            type = "group";
+            this.group = (Group) chatMessages;
+        }
 
         vboxMessages.getChildren().clear();
         for(Message message : messages){
