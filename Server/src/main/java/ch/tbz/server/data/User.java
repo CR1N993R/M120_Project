@@ -54,7 +54,7 @@ public class User {
             Database.persistObject(this);
             emit("register", "Success!");
         } catch (InvalidKeySpecException | NoSuchAlgorithmException ignored) {
-        }catch (ConstraintViolationException e){
+        }catch (PersistenceException e){
             emit("register", "User Already Exists");
         }
     }

@@ -26,7 +26,7 @@ public class Client {
     public void login(String msg) {
         try {
             JSONObject object = (JSONObject) new JSONParser().parse(msg);
-            User user = Database.getUserByUserNameOrId((String) object.get("username"));
+            User user = Database.getUserByUserName((String) object.get("username"));
             String password = Hashing.hash((String) object.get("password"));
             if (user.getPassword().equals(password)) {
                 this.user = user;
@@ -37,7 +37,8 @@ public class Client {
             } else {
                 connection.emit("login", "Wrong Username or Password");
             }
-        } catch (ParseException | InvalidKeySpecException | NoSuchAlgorithmException ignored) {
+        } catch (ParseException | InvalidKeySpecException | NoSuchAlgorithmException e) {
+            e.printStackTrace();
         }
     }
 
@@ -135,7 +136,11 @@ public class Client {
         if (jo != null) {
             int search = Math.toIntExact(Long.parseLong((String) jo.get("id")));
             User result = Database.getUsersById(search);
-            connection.emit("getUsersByName", result.toJson().toJSONString());
+            if (result != null) {
+                connection.emit("getUser", result.toJson().toJSONString());
+            }else {
+                connection.emit("getUser", "");
+            }
         }
     }
 

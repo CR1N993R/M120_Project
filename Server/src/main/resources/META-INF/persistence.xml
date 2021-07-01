@@ -9,7 +9,7 @@
             <property name="hibernate.connection.url" value="jdbc:mysql://localhost:3306/discord"/>
             <property name="hibernate.connection.autocommit" value="false"/>
             <property name="hibernate.connection.username" value="root"/>
-            <property name="hibernate.connection.password" value="Pa$$word"/>
+            <property name="hibernate.connection.password" value=""/>
             <property name="hibernate.dialect" value="org.hibernate.dialect.MariaDB10Dialect"/>
             <property name="hibernate.connection.CharSet" value="utf8"/>
             <property name="hibernate.connection.characterEncoding" value="utf8"/>
