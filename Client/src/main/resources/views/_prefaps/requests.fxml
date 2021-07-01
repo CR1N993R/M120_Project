@@ -3,38 +3,16 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-
-<AnchorPane prefHeight="350" prefWidth="325" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.RequestsController">
-   <children>
-      <TabPane prefHeight="350.0" prefWidth="325.0" tabClosingPolicy="UNAVAILABLE">
-        <tabs>
-          <Tab text="Friend requests">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <ScrollPane hbarPolicy="never" vbarPolicy="never" layoutX="13.0" layoutY="12.0" prefHeight="295.0" prefWidth="298.0">
-                          <content>
-                            <VBox fx:id="friendRequestVbox" minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="298.0" />
-                          </content>
-                        </ScrollPane>
-                     </children>
-                  </AnchorPane>
-            </content>
-          </Tab>
-          <Tab text="Groupchat invites">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" >
-               <children>
-                  <ScrollPane hbarPolicy="never" vbarPolicy="never" layoutX="13.0" layoutY="12.0" prefHeight="295.0" prefWidth="298.0">
-                     <content>
-                        <VBox fx:id="groupchatInvitesVbox" minHeight="0.0" minWidth="0.0" prefHeight="295.0" prefWidth="298.0" />
-                     </content>
-                  </ScrollPane>
-               </children>
-              </AnchorPane>
-            </content>
-          </Tab>
-        </tabs>
-      </TabPane>
-   </children>
+<AnchorPane prefHeight="322.0" prefWidth="325" xmlns="http://javafx.com/javafx/11.0.1"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="ch.tbz.client.frontend.controller._prefaps.RequestsController">
+    <AnchorPane prefHeight="322.0" prefWidth="325.0">
+        <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+            <ScrollPane hbarPolicy="never" layoutX="13.0" layoutY="12.0" prefHeight="295.0" prefWidth="298.0"
+                        vbarPolicy="never">
+                <VBox fx:id="friendRequestVbox" minHeight="0.0" minWidth="0.0" prefHeight="295.0"
+                      prefWidth="298.0"/>
+            </ScrollPane>
+        </AnchorPane>
+    </AnchorPane>
 </AnchorPane>

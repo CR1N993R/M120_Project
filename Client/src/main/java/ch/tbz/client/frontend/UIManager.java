@@ -1,6 +1,5 @@
 package ch.tbz.client.frontend;
 
-import ch.tbz.client.Data;
 import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
@@ -23,11 +22,11 @@ public class UIManager {
         try {
             Parent root = loader.load();
             stage.setTitle(title);
-            if (DataProperties.isIsFullscreen()){
+            if (DataProperties.isFullscreen()){
                 stage.setMaximized(true);
             }
             Scene scene = new Scene(root);
-            if (DataProperties.isIsDarkmode()){
+            if (DataProperties.isDarkmode()){
                 scene.getStylesheets().add("darkmode.css");
             }
             stage.setScene(scene);
@@ -56,8 +55,24 @@ public class UIManager {
         loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), group);
     }
 
+    public static void addFriend(){
+        loadScene(secondaryStage, "views/addFriends.fxml", "Add Friends").init();
+    }
+
+    public static void settings(){
+        loadScene(primaryStage, "views/menu.fxml", "Menu").init();
+    }
+
+    public static void addGroup(){
+        loadScene(primaryStage, "views/newGroupchat.fxml", "Add Groupchat");
+    }
+
     public static void close() {
         primaryStage.close();
+        secondaryStage.close();
+    }
+
+    public static void closeSecondary(){
         secondaryStage.close();
     }
 }

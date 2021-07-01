@@ -4,7 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="42.0" prefWidth="281.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="views._prefaps.FriendRequest">
+<AnchorPane prefHeight="42.0" prefWidth="281.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendRequestController">
    <children>
       <Button onAction="#declinedClicked" layoutX="242.0" layoutY="8.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="28.0" style="-fx-background-color: red; -fx-background-radius: 0;" text="×">
          <font>

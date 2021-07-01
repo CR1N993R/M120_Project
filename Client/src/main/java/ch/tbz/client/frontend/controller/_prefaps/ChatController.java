@@ -1,5 +1,8 @@
 package ch.tbz.client.frontend.controller._prefaps;
 
+import ch.tbz.client.backend.connection.Socket;
+import ch.tbz.client.backend.data.Friend;
+import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.backend.interfaces.Chat;
 import ch.tbz.client.backend.data.Message;
 import javafx.event.ActionEvent;
@@ -15,9 +18,17 @@ public class ChatController {
     public VBox vboxMessages;
     public TextField messageTb;
     public ArrayList<Message> messages;
+    public Friend friend;
+    public Group group;
+    public String type;
 
     public void init(Chat chatMessages){
         this.messages = chatMessages.getMessages();
+        this.friend = chatMessages.getFriend();
+        this.group = chatMessages.getGroup();
+        type = this.friend==null&&this.group!=null ? "group" : "friend";
+        type = this.group==null&&this.friend!=null ? "friend" : "group";
+
         vboxMessages.getChildren().clear();
         for(Message message : messages){
             try {
@@ -36,5 +47,13 @@ public class ChatController {
     public void sendClicked(ActionEvent actionEvent) {
         String text = this.messageTb.getText();
         text = text.replace("/shrug", "¯\\_(ツ)_/¯").replace("/tableflip", "(╯°□°）╯︵ ┻━┻").replace("/unflip", "┬─┬ ノ( ゜-゜ノ)");
+        switch (type){
+            case "group":
+                this.group.sendMessage(text);
+                break;
+            case "friend":
+                this.friend.sendToFriend(text);
+                break;
+        }
     }
 }

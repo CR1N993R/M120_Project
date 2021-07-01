@@ -8,8 +8,9 @@ import java.util.ArrayList;
 
 @Getter
 public class Friend extends Person implements Chat {
-    private final String state; //accepted, sent, received
+    private final String state; //accepted, send, received
     private final ArrayList<Message> messages;
+    private boolean isOn;
     private final int unreadMessages;
 
     public Friend(int userId, String name, String state, ArrayList<Message> messages, int unreadMessages, boolean online){
@@ -37,7 +38,21 @@ public class Friend extends Person implements Chat {
         return state;
     }
 
+    public boolean isOn() {
+        return isOn;
+    }
+
     public void sendToFriend(String msg){
-        Socket.emit("sendToUser", "{\"userid\":\"" + this.userId + ", \"msg\":\"" + msg + "\"}");
+        Socket.emit("sendToUser", "{\"userid\":\"" + userId + ", \"msg\":\"" + msg + "\"}");
+    }
+
+    @Override
+    public Friend getFriend() {
+        return this;
+    }
+
+    @Override
+    public Group getGroup() {
+        return null;
     }
 }

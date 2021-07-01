@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
+<?import javafx.scene.shape.Line?>
 <AnchorPane prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.HomeController">
     <children>
         <AnchorPane prefHeight="400.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
@@ -19,13 +20,13 @@
                                         </tooltip>
                                     </Button>
                                 </AnchorPane>
-                            <Line endX="-25.0" startX="-100.0" />
+                                <Line endX="-25.0" startX="-100.0" />
                             </children>
                         </VBox>
                     </content>
                 </ScrollPane>
                 <AnchorPane layoutY="334.0" prefHeight="65.0" prefWidth="71.0">
-                    <Button layoutX="5.0" layoutY="2.0" onAction="#friendsClicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;" text="+">
+                    <Button layoutX="5.0" layoutY="2.0" onAction="#addGroupClicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;" text="+">
                         <tooltip>
                             <Tooltip fx:id="tooltipAddServer" />
                         </tooltip>

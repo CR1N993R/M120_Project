@@ -39,4 +39,14 @@ public class Group implements Chat {
     public void sendMessage(String msg) {
         Socket.emit("removeUserFromGroup", "{\"msg\":\"" + msg + "\", \"groupId\":\""+ groupId + "\"}");
     }
+
+    @Override
+    public Friend getFriend() {
+        return null;
+    }
+
+    @Override
+    public Group getGroup() {
+        return this;
+    }
 }

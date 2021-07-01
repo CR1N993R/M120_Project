@@ -2,6 +2,7 @@ package ch.tbz.client.frontend.controller._prefaps;
 
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.User;
+import ch.tbz.client.frontend.UIManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -30,5 +31,6 @@ public class FriendsBarController {
     }
 
     public void addfriendClicked(MouseEvent mouseEvent) {
+        UIManager.addFriend();
     }
 }
