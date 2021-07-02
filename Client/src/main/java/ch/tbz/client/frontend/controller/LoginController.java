@@ -23,7 +23,11 @@ public class LoginController {
 
     public void clicked(ActionEvent actionEvent) {
         Socket.login(emailTb.getText(), pwdTb.getText(), (s)->{
-            this.label.setText(s);
+            if(s.equals("Success!")){
+                UIManager.home();
+            }else {
+                this.label.setText(s);
+            }
         });
     }
 }

@@ -22,7 +22,11 @@ public class RegisterController {
         String msg = Validator.validateRegister(usernameTb.getText(), pwdTb.getText());
         if (!msg.equals("")) {
             Socket.register(usernameTb.getText(), pwdTb.getText(), (s) -> {
-                errorMSG.setText(s);
+                if(s.equals("Success!")){
+                    UIManager.login();
+                }else {
+                    errorMSG.setText(s);
+                }
             });
         }else{
             errorMSG.setText(msg);
