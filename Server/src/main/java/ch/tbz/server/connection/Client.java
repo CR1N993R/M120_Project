@@ -81,7 +81,6 @@ public class Client {
             this.user.setMessageEvent(null);
             this.user = null;
         }
-        connection.removeAllListeners();
     }
 
     public void sendToUser(String json) {

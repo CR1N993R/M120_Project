@@ -29,7 +29,7 @@ public class FriendIconController {
         this.usernameLabel.setText(this.friend.getUsername());
         this.usernameTooltip.setText(this.friend.getUsername());
         this.newMassageCount.setText(this.friend.getUnreadMessages() + "");
-        this.statusCircle.setFill(this.friend.isOn() ? Color.GREEN : Paint.valueOf("#8F979F"));
+        this.statusCircle.setFill(this.friend.isOnline() ? Color.GREEN : Paint.valueOf("#8F979F"));
 
         for (Group group : Socket.getUser().getGroups()){
             MenuItem item = new MenuItem(group.getGroupName());
