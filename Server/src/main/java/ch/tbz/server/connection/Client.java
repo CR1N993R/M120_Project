@@ -27,11 +27,11 @@ public class Client {
     public void login(String msg) {
         try {
             JSONObject object = (JSONObject) new JSONParser().parse(msg);
-            User user = Database.getUserByUserName((String) object.get("username"));
+            List<User> user = Database.getUserByUsersName((String) object.get("username"));
             String password = Hashing.hash((String) object.get("password"));
-            if (user.getPassword().equals(password)) {
-                this.user = user;
-                user.setOnline(true);
+            if (user.size() == 1 && user.get(0).getPassword().equals(password)) {
+                this.user = user.get(0);
+                this.user.setOnline(true);
                 connection.emit("login", "Success!");
                 getData("");
                 attachListeners();

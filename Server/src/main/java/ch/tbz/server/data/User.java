@@ -51,12 +51,19 @@ public class User {
             this.messageEvent = callback;
             this.username = username;
             this.password = Hashing.hash(password);
+            if (checkIfExists(username)) {
+                emit("register", "User Already Exists");
+                return;
+            }
             Database.persistObject(this);
             emit("register", "Success!");
-        } catch (InvalidKeySpecException | NoSuchAlgorithmException ignored) {
-        }catch (PersistenceException e){
-            emit("register", "User Already Exists");
+        } catch (InvalidKeySpecException | NoSuchAlgorithmException | PersistenceException ignored) {
+            ignored.printStackTrace();
         }
+    }
+
+    public boolean checkIfExists(String username){
+        return Database.getUserByUsersName(username).size() != 0;
     }
 
     public void sendMessageToFriend(String msg, int uid) {
@@ -221,7 +228,7 @@ public class User {
 
     public void setOnline(boolean state){
         online = state;
-
+        sendOnlineToAll();
     }
 
     public void sendOnlineToAll() {

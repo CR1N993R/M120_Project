@@ -4,6 +4,7 @@ import ch.tbz.server.data.User;
 import ch.tbz.server.data.group.GroupChat;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
+import javax.persistence.PersistenceException;
 import java.util.List;
 
 public class Database {
@@ -15,21 +16,13 @@ public class Database {
         }
     }
 
-    public static User getUserByUserName(String name){
-        return em.createQuery("from User U where U.username = '" + name +"'", User.class).getSingleResult();
+    public static List<User> getUserByUsersName(String name){
+        return em.createQuery("from User U where U.username = '" + name +"'", User.class).getResultList();
     }
-
-    /*public static List<User> getUsersByName(String search) {
-        return em.createQuery("from User where User.username like %" + search + "%", User.class).getResultList();
-    }*/
 
     public static User getUsersById(int id) {
         return em.find(User.class, id);
     }
-
-    /*public static GroupChat getGroupByName(String search) {
-        return em.createQuery("from Group where Group.name like %" + search + "%", GroupChat.class).getSingleResult();
-    }*/
 
     public static GroupChat getGroupById(long id) {
         return em.find(GroupChat.class, id);
