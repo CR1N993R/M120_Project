@@ -32,8 +32,8 @@ public class Client {
             if (user.size() == 1 && user.get(0).getPassword().equals(password)) {
                 this.user = user.get(0);
                 this.user.setOnline(true);
-                connection.emit("login", "Success!");
                 getData("");
+                connection.emit("login", "Success!");
                 attachListeners();
             } else {
                 connection.emit("login", "Wrong Username or Password");
