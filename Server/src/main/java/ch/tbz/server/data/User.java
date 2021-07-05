@@ -40,15 +40,15 @@ public class User {
     @Transient
     private boolean online = false;
     @Transient
-    @Setter
     private MessageEvent messageEvent;
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<UserToFriend> friends = new ArrayList<>();
     @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
     private List<UserToGroup> groups = new ArrayList<>();
 
-    public User(String username, String password){
+    public User(String username, String password, MessageEvent callback){
         try {
+            this.messageEvent = callback;
             this.username = username;
             this.password = Hashing.hash(password);
             Database.persistObject(this);

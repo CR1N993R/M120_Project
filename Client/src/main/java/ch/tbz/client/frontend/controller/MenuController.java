@@ -11,7 +11,7 @@ import javafx.scene.layout.AnchorPane;
 
 import java.io.IOException;
 
-public class MenuController {
+public class MenuController extends ControllerBase {
     public AnchorPane pane;
 
     public void init(){

@@ -9,7 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class RegisterController {
+public class RegisterController extends ControllerBase{
     public TextField usernameTb;
     public PasswordField pwdTb;
     public Label errorMSG;
@@ -20,7 +20,7 @@ public class RegisterController {
 
     public void registerClicked(ActionEvent actionEvent) {
         String msg = Validator.validateRegister(usernameTb.getText(), pwdTb.getText());
-        if (!msg.equals("")) {
+        if (msg.equals("")) {
             Socket.register(usernameTb.getText(), pwdTb.getText(), (s) -> {
                 if(s.equals("Success!")){
                     UIManager.login();

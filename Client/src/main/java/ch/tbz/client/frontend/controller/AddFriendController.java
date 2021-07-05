@@ -9,7 +9,7 @@ import javafx.event.ActionEvent;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 
-public class AddFriendController {
+public class AddFriendController extends ControllerBase {
     public TextField idTF;
     public Label errorMessageLabel;
 

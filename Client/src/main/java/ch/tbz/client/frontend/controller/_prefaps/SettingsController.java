@@ -2,10 +2,11 @@ package ch.tbz.client.frontend.controller._prefaps;
 
 import ch.tbz.client.Main;
 import ch.tbz.client.backend.util.DataProperties;
+import ch.tbz.client.frontend.controller.ControllerBase;
 import javafx.event.ActionEvent;
 import javafx.scene.control.ToggleButton;
 
-public class SettingsController {
+public class SettingsController extends ControllerBase {
 
     public ToggleButton fullscreenTB;
     public ToggleButton darkmodeTB;

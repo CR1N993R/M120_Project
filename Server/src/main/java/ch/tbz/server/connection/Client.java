@@ -20,6 +20,7 @@ public class Client {
 
     public Client(Connection connection) {
         this.connection = connection;
+        System.out.println("New Client connected");
         resetListeners();
     }
 
@@ -43,7 +44,6 @@ public class Client {
     }
 
     public void attachListeners() {
-        user.setMessageEvent(connection::emit);
         connection.setOn("logout", this::logout);
         connection.setOn("sendToUser", this::sendToUser);
         connection.setOn("sendToGroup", this::sendToGroup);
@@ -78,7 +78,6 @@ public class Client {
         resetListeners();
         if (user != null) {
             this.user.setOnline(false);
-            this.user.setMessageEvent(null);
             this.user = null;
         }
     }
@@ -199,7 +198,7 @@ public class Client {
         if (jo != null) {
             String username = (String) jo.get("username");
             String password = (String) jo.get("password");
-            new User(username,password);
+            new User(username,password, connection::emit);
         }
     }
 

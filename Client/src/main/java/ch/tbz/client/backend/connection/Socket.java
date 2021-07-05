@@ -56,12 +56,12 @@ public class Socket {
             connection.removeAllListenersByEvent("login");
             CallbackWrapper.sendMessage(callback, s);
         });
-        connection.emit("login", "{\"username\":\""+ username +"\",\"password\",\"" + password + "\"}");
+        connection.emit("login", "{\"username\":\""+ username +"\",\"password\":\"" + password + "\"}");
     }
 
     public static void getUser(String id, UserCallback callback){
         connection.setOn("getUserById", (s) -> {
-            connection.removeAllListenersByEvent("register");
+            connection.removeAllListenersByEvent("getUserById");
             try {
                 if (s.length() > 0) {
                     JSONObject user = (JSONObject) new JSONParser().parse(s);

@@ -9,7 +9,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class LoginController {
+public class LoginController extends ControllerBase {
     public TextField emailTb;
     public PasswordField pwdTb;
     public Label label;
