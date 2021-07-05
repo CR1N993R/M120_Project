@@ -3,12 +3,9 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="350" prefWidth="325" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.SettingsController">
+<AnchorPane prefHeight="350" prefWidth="325" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.SettingsController">
     <Label layoutX="25" layoutY="90" prefHeight="30" prefWidth="70.0">Dark Mode</Label>
     <ToggleButton fx:id="darkmodeTB" layoutX="230.0" layoutY="90.0" onAction="#toggleDarkMode" prefHeight="30" prefWidth="70" selected="true">On
     </ToggleButton>
-    <Label layoutX="25.0" layoutY="141.0" prefHeight="18.0" prefWidth="151.0" text="Fullscreen" />
-    <ToggleButton fx:id="fullscreenTB" layoutX="231.0" layoutY="137.0" mnemonicParsing="false" onAction="#toggleFullscreen" prefHeight="26.0" prefWidth="70.0" selected="true">On
-    </ToggleButton>
-   <Button onAction="#applyPressed" layoutX="230.0" layoutY="309.0" mnemonicParsing="false" prefHeight="26.0" prefWidth="70.0" text="Apply" />
+   <Button layoutX="230.0" layoutY="309.0" mnemonicParsing="false" onAction="#applyPressed" prefHeight="26.0" prefWidth="70.0" text="Apply" />
 </AnchorPane>

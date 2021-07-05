@@ -11,7 +11,7 @@ public class Main extends Application {
     public void load() {
         Socket.init();
         UIManager.close();
-        start(UIManager.primaryStage);
+        UIManager.home();
     }
 
     @Override

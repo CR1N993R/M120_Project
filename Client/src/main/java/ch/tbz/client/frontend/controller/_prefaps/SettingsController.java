@@ -12,9 +12,6 @@ public class SettingsController extends ControllerBase {
     public ToggleButton darkmodeTB;
 
     public void init(){
-        this.fullscreenTB.setSelected(DataProperties.isFullscreen());
-        this.fullscreenTB.setText(DataProperties.isFullscreen() ? "On" : "Off");
-        this.darkmodeTB.setStyle(DataProperties.isFullscreen() ? "-fx-background-color: #73fc03" : "-fx-background-color: red");
 
         this.darkmodeTB.setSelected(DataProperties.isDarkmode());
         this.darkmodeTB.setText(DataProperties.isDarkmode() ? "On" : "Off");
@@ -23,11 +20,6 @@ public class SettingsController extends ControllerBase {
 
     public void toggleDarkMode(ActionEvent actionEvent) {
         DataProperties.setIsDarkmode(!DataProperties.isDarkmode());
-        init();
-    }
-
-    public void toggleFullscreen(ActionEvent actionEvent) {
-        DataProperties.setIsFullscreen(!DataProperties.isFullscreen());
         init();
     }
 

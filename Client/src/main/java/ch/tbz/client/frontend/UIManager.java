@@ -17,14 +17,12 @@ public class UIManager {
     public static Stage primaryStage;
     public static Stage secondaryStage;
 
-    private static ControllerBase loadScene(Stage stage, String path, String title) {
+    private static ControllerBase loadScene(Stage stage, String path, String title, boolean maximised) {
         FXMLLoader loader = new FXMLLoader(Main.class.getClassLoader().getResource(path));
         try {
             Parent root = loader.load();
             stage.setTitle(title);
-            if (DataProperties.isFullscreen()){
-                stage.setMaximized(true);
-            }
+            stage.setMaximized(maximised);
             Scene scene = new Scene(root);
             if (DataProperties.isDarkmode()){
                 scene.getStylesheets().add("darkmode.css");
@@ -36,35 +34,35 @@ public class UIManager {
     }
 
     public static void login(){
-        loadScene(primaryStage, "views/login.fxml", "Login");
+        loadScene(primaryStage, "views/login.fxml", "Login", false);
     }
 
     public static void register(){
-        loadScene(primaryStage, "views/register.fxml", "Register");
+        loadScene(primaryStage, "views/register.fxml", "Register", false);
     }
 
     public static void home(){
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser());
+        loadScene(primaryStage, "views/home.fxml", "Home", true).init(Socket.getUser());
     }
 
     public static void home(Friend friend){
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), friend);
+        loadScene(primaryStage, "views/home.fxml", "Home", true).init(Socket.getUser(), friend);
     }
 
     public static void home(Group group){
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), group);
+        loadScene(primaryStage, "views/home.fxml", "Home", true).init(Socket.getUser(), group);
     }
 
     public static void addFriend(){
-        loadScene(secondaryStage, "views/addFriends.fxml", "Add Friends").init();
+        loadScene(secondaryStage, "views/addFriends.fxml", "Add Friends", false).init();
     }
 
     public static void settings(){
-        loadScene(primaryStage, "views/menu.fxml", "Menu").init();
+        loadScene(secondaryStage, "views/menu.fxml", "Menu", false).init();
     }
 
     public static void addGroup(){
-        loadScene(primaryStage, "views/newGroupchat.fxml", "Add Groupchat");
+        loadScene(secondaryStage, "views/newGroupchat.fxml", "Add Groupchat", false);
     }
 
     public static void close() {

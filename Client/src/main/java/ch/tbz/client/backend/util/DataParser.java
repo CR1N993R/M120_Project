@@ -16,7 +16,7 @@ public class DataParser {
         try {
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(json);
-            long userId = Long.parseLong((String) object.get("userId"));
+            long userId = (Long) object.get("uid");
             String userName = (String) object.get("userName");
             boolean loggedIn = (boolean) object.get("online");
             ArrayList<Friend> friends = parseFriends((JSONArray) object.get("friends"));

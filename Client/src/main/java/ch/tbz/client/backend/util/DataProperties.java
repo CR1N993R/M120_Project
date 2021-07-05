@@ -12,29 +12,29 @@ public class DataProperties {
 
     public static void loadData() {
         try {
-            properties.load(new FileReader("data/data.properties"));
+            properties.load(new FileReader("Client/src/main/java/ch/tbz/client/backend/data/data.properties"));
         } catch (IOException ignored) {}
         isDarkmode = Boolean.parseBoolean(properties.getProperty("isDarkmode"));
-        isFullscreen = Boolean.parseBoolean(properties.getProperty("isFullscreen"));
+        //isFullscreen = Boolean.parseBoolean(properties.getProperty("isFullscreen"));
     }
 
     public static boolean isDarkmode() {
         return isDarkmode;
     }
 
-    public static boolean isFullscreen() {
+    /*public static boolean isFullscreen() {
         return isFullscreen;
-    }
+    }*/
 
     public static void setIsDarkmode(boolean isDarkmode) {
         DataProperties.isDarkmode = isDarkmode;
         saveData();
     }
 
-    public static void setIsFullscreen(boolean isFullscreen) {
+    /*public static void setIsFullscreen(boolean isFullscreen) {
         DataProperties.isFullscreen = isFullscreen;
         saveData();
-    }
+    }*/
 
     public static void saveData(){
         properties.setProperty("isDarkmode", String.valueOf(isDarkmode));
