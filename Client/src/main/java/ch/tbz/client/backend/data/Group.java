@@ -29,14 +29,14 @@ public class Group implements Chat{
     }
 
     public void addUserToGroup(long userId) {
-        Socket.emit("removeUserFromGroup", "{\"userid\":\"" + userId + "\", \"groupId\":\""+ groupId + "\"}");
+        Socket.emit("addUserToGroup", "{\"userid\":\"" + userId + "\", \"groupId\":\""+ groupId + "\"}");
     }
 
     public void changeGroupName(String name) {
-        Socket.emit("removeUserFromGroup", "{\"groupName\":\"" + name + "\", \"groupId\":\""+ groupId + "\"}");
+        Socket.emit("changeGroupName", "{\"groupName\":\"" + name + "\", \"groupId\":\""+ groupId + "\"}");
     }
 
     public void sendMessage(String msg) {
-        Socket.emit("removeUserFromGroup", "{\"msg\":\"" + msg + "\", \"groupId\":\""+ groupId + "\"}");
+        Socket.emit("sendToGroup", "{\"msg\":\"" + msg + "\", \"groupId\":\""+ groupId + "\"}");
     }
 }

@@ -107,9 +107,9 @@ public class Client {
     public void sendFriendRequest(String json) {
         JSONObject jo = Json.parseJson(json);
         if (jo != null) {
-            int userid = Math.toIntExact(Long.parseLong((String) jo.get("userid")));
+            long userid = Long.parseLong((String) jo.get("userid"));
             User user = Database.getUsersById(userid);
-            user.addFriend(user);
+            this.user.addFriend(user);
         }
     }
 

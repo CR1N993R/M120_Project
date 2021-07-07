@@ -73,7 +73,7 @@ public class HomeController extends ControllerBase{
     private void initChat(Chat chatMessage) {
         chat.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(ChatController.class.getResource("chat.fxml"));
+            FXMLLoader loader = new FXMLLoader(ChatController.class.getClassLoader().getResource("views/_prefaps/chat.fxml"));
             Parent root = loader.load();
             ChatController controller = loader.getController();
             controller.init(chatMessage);
@@ -86,7 +86,7 @@ public class HomeController extends ControllerBase{
     private void initFriends() {
         vboxFriends.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(FriendsBarController.class.getClassLoader().getResource("friendsBar.fxml"));
+            FXMLLoader loader = new FXMLLoader(FriendsBarController.class.getClassLoader().getResource("views/_prefaps/friendsBar.fxml"));
             Parent root = loader.load();
             FriendsBarController controller = loader.getController();
             controller.init(user);
@@ -100,7 +100,7 @@ public class HomeController extends ControllerBase{
         vboxServer.getChildren().clear();
         for (Group group : user.getGroups()) {
             try {
-                FXMLLoader loader = new FXMLLoader(GroupIconController.class.getClassLoader().getResource("groupIcon.fxml"));
+                FXMLLoader loader = new FXMLLoader(GroupIconController.class.getClassLoader().getResource("views/_prefaps/groupIcon.fxml"));
                 Parent root = loader.load();
                 GroupIconController controller = loader.getController();
                 controller.init(group);

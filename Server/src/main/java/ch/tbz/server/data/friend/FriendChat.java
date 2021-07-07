@@ -29,9 +29,9 @@ public class FriendChat {
     private List<Message> messages = new ArrayList<>();
 
     public FriendChat(User user, User friend){
+        Database.persistObject(this);
         users.add(new UserToFriend(user, "sent", this));
         users.add(new UserToFriend(friend, "received", this));
-        Database.persistObject(this);
     }
 
     public void addMessage(String text, User user){

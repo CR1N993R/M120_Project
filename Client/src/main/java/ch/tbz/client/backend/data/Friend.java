@@ -38,6 +38,6 @@ public class Friend extends Person implements Chat {
     }
 
     public void sendToFriend(String msg){
-        Socket.emit("sendToUser", "{\"userid\":\"" + userId + ", \"msg\":\"" + msg + "\"}");
+        Socket.emit("sendToUser", "{\"userid\":\"" + userId + "\", \"msg\":\"" + msg + "\"}");
     }
 }

@@ -19,11 +19,13 @@ public class FriendsBarController {
         friends.getChildren().clear();
         for (Friend friend : user.getFriends()) {
             try {
-                FXMLLoader loader = new FXMLLoader(FriendIconController.class.getClassLoader().getResource("friendIcon.fxml"));
-                Parent root = loader.load();
-                FriendIconController controller = loader.getController();
-                controller.init(friend);
-                friends.getChildren().add(root);
+                if (friend.getState().equals("accepted")) {
+                    FXMLLoader loader = new FXMLLoader(FriendIconController.class.getClassLoader().getResource("views/_prefaps/friendIcon.fxml"));
+                    Parent root = loader.load();
+                    FriendIconController controller = loader.getController();
+                    controller.init(friend);
+                    friends.getChildren().add(root);
+                }
             } catch (IOException e) {
                 e.printStackTrace();
             }

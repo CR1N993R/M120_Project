@@ -4,12 +4,12 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="361.0" prefWidth="137.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendsBarController">
-    <TextField fx:id="search" layoutY="3.0" prefHeight="26.0" prefWidth="138.0" promptText="🔎" />
-    <ScrollPane hbarPolicy="never" layoutY="54.0" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="138.0" vbarPolicy="never">
-        <VBox fx:id="friends" prefHeight="306.0" prefWidth="138.0">
+    <TextField fx:id="search" layoutY="3.0" prefHeight="26.0" prefWidth="138.0" promptText="🔎" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
+    <ScrollPane hbarPolicy="never" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="138.0" vbarPolicy="never" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+        <VBox fx:id="friends" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="306.0" prefWidth="138.0">
 
         </VBox>
     </ScrollPane>
-   <Label layoutX="2.0" layoutY="32.0" onMouseClicked="#addfriendClicked" prefHeight="18.0" prefWidth="113.0" text="Freund hinzufügen" />
-   <Label alignment="CENTER" layoutX="117.0" layoutY="32.0" onMouseClicked="#addfriendClicked" prefHeight="18.0" prefWidth="14.0" text="+" />
+   <Label layoutX="2.0" layoutY="32.0" onMouseClicked="#addfriendClicked" prefHeight="18.0" prefWidth="113.0" text="Freund hinzufügen" AnchorPane.leftAnchor="2.0" AnchorPane.rightAnchor="22.799999999999997" AnchorPane.topAnchor="32.0" />
+   <Label alignment="CENTER" layoutX="117.0" layoutY="32.0" onMouseClicked="#addfriendClicked" prefHeight="18.0" prefWidth="14.0" text="+" AnchorPane.leftAnchor="117.0" AnchorPane.rightAnchor="6.0" AnchorPane.topAnchor="32.0" />
 </AnchorPane>

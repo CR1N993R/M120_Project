@@ -14,10 +14,11 @@ import java.util.ArrayList;
 public class DataParser {
     public static void parseData(String json, User user) {
         try {
+            System.out.println(json);
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(json);
             long userId = (Long) object.get("uid");
-            String userName = (String) object.get("userName");
+            String userName = (String) object.get("username");
             boolean loggedIn = (boolean) object.get("online");
             ArrayList<Friend> friends = parseFriends((JSONArray) object.get("friends"));
             ArrayList<Group> groups = parseGroups((JSONArray) object.get("groups"));
@@ -29,23 +30,27 @@ public class DataParser {
 
     private static ArrayList<Friend> parseFriends(JSONArray friends) {
         ArrayList<Friend> friendList = new ArrayList<>();
-        for (Object friendObj : friends) {
-            friendList.add(parseFriend((JSONObject) friendObj));
+        if(friends != null) {
+            for (Object friendObj : friends) {
+                friendList.add(parseFriend((JSONObject) friendObj));
+            }
         }
         return friendList;
     }
 
     private static ArrayList<Group> parseGroups(JSONArray groups) {
         ArrayList<Group> groupList = new ArrayList<>();
-        for (Object group : groups) {
-            groupList.add(parseGroup((JSONObject) group));
+        if(groups != null) {
+            for (Object group : groups) {
+                groupList.add(parseGroup((JSONObject) group));
+            }
         }
         return groupList;
     }
 
     private static Group parseGroup(JSONObject o) {
-        int id = Math.toIntExact(Long.parseLong((String) o.get("id")));
-        int unreadMessages = Math.toIntExact(Long.parseLong((String) o.get("unreadMessages")));
+        int id = Math.toIntExact((Long) o.get("id"));
+        int unreadMessages = Math.toIntExact((Long) o.get("unreadMessages"));
         String name = (String) o.get("name");
         return new Group(id, name, unreadMessages, parsePersons((JSONArray) o.get("users")), parseMessages((JSONArray) o.get("messages")));
     }
@@ -59,7 +64,7 @@ public class DataParser {
     }
 
     private static Message parseMessage(JSONObject o) {
-        int id = Math.toIntExact(Long.parseLong((String) o.get("id")));
+        int id = Math.toIntExact((Long) o.get("id"));
         String text = (String) o.get("text");
         Person person = parsePerson((JSONObject) o.get("user"));
         LocalDateTime ldt = LocalDateTime.parse((String) o.get("time"), DateTimeFormatter.ISO_DATE_TIME);
@@ -68,24 +73,26 @@ public class DataParser {
 
     public static ArrayList<Person> parsePersons(JSONArray array) {
         ArrayList<Person> members = new ArrayList<>();
-        for (Object o : array) {
-            members.add(parsePerson((JSONObject) o));
+        if(array != null) {
+            for (Object o : array) {
+                members.add(parsePerson((JSONObject) o));
+            }
         }
         return members;
     }
 
     private static Friend parseFriend(JSONObject o) {
-        int id = Math.toIntExact(Long.parseLong((String) o.get("id")));
+        int id = Math.toIntExact((Long) o.get("id"));
         String name = (String) o.get("name");
         boolean online = (boolean) o.get("online");
-        int unreadMessages = Math.toIntExact(Long.parseLong((String) o.get("unreadMessages")));
+        int unreadMessages = Math.toIntExact((Long) o.get("unreadMessages"));
         String state = (String) o.get("state");
         ArrayList<Message> messages = parseMessages((JSONArray) o.get("messages"));
         return new Friend(id, name, state, messages, unreadMessages, online);
     }
 
     public static Person parsePerson(JSONObject o) {
-        int userId = Math.toIntExact(Long.parseLong((String) o.get("uid")));
+        int userId = Math.toIntExact((Long) o.get("uid"));
         String userName = (String) o.get("username");
         boolean online = (boolean) o.get("online");
         return new Person(userId, userName, online);
@@ -95,7 +102,7 @@ public class DataParser {
         try {
             JSONObject obj = (JSONObject) new JSONParser().parse(json);
             boolean isGroup = (boolean) obj.get("isGroup");
-            long userId = Long.parseLong((String) obj.get("userId"));
+            long userId = (Long) obj.get("userId");
             boolean state = (boolean) obj.get("state");
             if (isGroup){
                 updateGroupMemberState(userId, state);

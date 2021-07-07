@@ -68,9 +68,7 @@ public class User {
 
     public void sendMessageToFriend(String msg, int uid) {
         for (UserToFriend friend : friends) {
-            User user0 = friend.getChat().getUsers().get(0).getUser();
-            User user1 = friend.getChat().getUsers().get(1).getUser();
-            if (user0.uid == uid || user1.uid == uid) {
+            if (friend.getFriend().uid == uid) {
                 friend.getChat().addMessage(msg, this);
                 return;
             }
@@ -119,7 +117,7 @@ public class User {
     public JSONArray getFriendsAsJson() {
         JSONArray array = new JSONArray();
         for (UserToFriend friend : friends) {
-            friend.toJson();
+            array.add(friend.toJson());
         }
         return array;
     }
@@ -127,7 +125,7 @@ public class User {
     public JSONArray getGroupAsJson() {
         JSONArray array = new JSONArray();
         for (UserToGroup group : groups) {
-            group.toJson();
+            array.add(group.toJson());
         }
         return array;
     }

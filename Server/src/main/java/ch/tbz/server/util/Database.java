@@ -20,7 +20,7 @@ public class Database {
         return em.createQuery("from User U where U.username = '" + name +"'", User.class).getResultList();
     }
 
-    public static User getUsersById(int id) {
+    public static User getUsersById(long id) {
         return em.find(User.class, id);
     }
 

@@ -36,6 +36,7 @@ public class UserToFriend {
         this.state = state;
         user.getFriends().add(this);
         user.sendData();
+        Database.persistObject(this);
     }
 
     public JSONObject toJson() {
