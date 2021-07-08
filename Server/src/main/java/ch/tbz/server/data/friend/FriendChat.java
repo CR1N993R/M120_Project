@@ -23,15 +23,22 @@ public class FriendChat {
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private long id;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chat")
+    @OneToMany(mappedBy = "chat")
     private List<UserToFriend> users = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany()
     private List<Message> messages = new ArrayList<>();
 
     public FriendChat(User user, User friend){
         Database.persistObject(this);
         users.add(new UserToFriend(user, "sent", this));
         users.add(new UserToFriend(friend, "received", this));
+        sendUpdateUsers();
+    }
+
+    public void sendUpdateUsers() {
+        for (UserToFriend user : users) {
+            user.getUser().sendData();
+        }
     }
 
     public void addMessage(String text, User user){

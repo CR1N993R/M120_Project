@@ -1,6 +1,5 @@
 package ch.tbz.client.frontend.controller._prefaps;
 
-import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.backend.data.Message;
@@ -35,7 +34,7 @@ public class ChatController {
         vboxMessages.getChildren().clear();
         for(Message message : messages){
             try {
-                FXMLLoader loader = new FXMLLoader(MessageController.class.getClassLoader().getResource("MessageController.fxml"));
+                FXMLLoader loader = new FXMLLoader(MessageController.class.getClassLoader().getResource("views/_prefaps/message.fxml"));
                 Parent root = loader.load();
                 MessageController controller = loader.getController();
                 controller.init(message);

@@ -19,14 +19,14 @@ public class UserToFriend {
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "fk_user")
     private User user;
     @Column(name = "unread_messages")
     private int unreadMessages = 0;
     @Column(name = "state")
     private String state;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "fk_chat")
     private FriendChat chat;
 
@@ -35,7 +35,6 @@ public class UserToFriend {
         this.user = user;
         this.state = state;
         user.getFriends().add(this);
-        user.sendData();
         Database.persistObject(this);
     }
 

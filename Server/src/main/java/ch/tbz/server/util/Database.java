@@ -4,7 +4,6 @@ import ch.tbz.server.data.User;
 import ch.tbz.server.data.group.GroupChat;
 import javax.persistence.EntityManager;
 import javax.persistence.Persistence;
-import javax.persistence.PersistenceException;
 import java.util.List;
 
 public class Database {

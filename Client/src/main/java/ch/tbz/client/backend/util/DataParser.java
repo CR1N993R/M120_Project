@@ -14,7 +14,6 @@ import java.util.ArrayList;
 public class DataParser {
     public static void parseData(String json, User user) {
         try {
-            System.out.println(json);
             JSONParser parser = new JSONParser();
             JSONObject object = (JSONObject) parser.parse(json);
             long userId = (Long) object.get("uid");
@@ -102,7 +101,7 @@ public class DataParser {
         try {
             JSONObject obj = (JSONObject) new JSONParser().parse(json);
             boolean isGroup = (boolean) obj.get("isGroup");
-            long userId = (Long) obj.get("userId");
+            long userId = Long.parseLong((String) obj.get("userId"));
             boolean state = (boolean) obj.get("state");
             if (isGroup){
                 updateGroupMemberState(userId, state);

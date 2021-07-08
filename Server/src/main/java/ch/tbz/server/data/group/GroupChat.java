@@ -22,9 +22,9 @@ public class GroupChat {
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private long id;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "chat")
+    @OneToMany(mappedBy = "chat")
     private List<UserToGroup> users = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY)
+    @OneToMany()
     private List<Message> messages = new ArrayList<>();
     @Column(name = "name")
     private String name;
@@ -32,6 +32,7 @@ public class GroupChat {
     public GroupChat(String name, UserToGroup owner) {
         this.name = name;
         this.users.add(owner);
+        Database.persistObject(this);
     }
 
     public void setName(String name) {
@@ -76,7 +77,7 @@ public class GroupChat {
     public JSONArray getUsersAsJson() {
         JSONArray array = new JSONArray();
         for (UserToGroup user : users) {
-            array.add(user.toJson());
+            array.add(user.getUser().toJson());
         }
         return array;
     }

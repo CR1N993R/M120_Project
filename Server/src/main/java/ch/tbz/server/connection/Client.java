@@ -20,7 +20,6 @@ public class Client {
 
     public Client(Connection connection) {
         this.connection = connection;
-        System.out.println("New Client connected");
         resetListeners();
     }
 
@@ -32,6 +31,7 @@ public class Client {
             if (user.size() == 1 && user.get(0).getPassword().equals(password)) {
                 this.user = user.get(0);
                 this.user.setOnline(true);
+                this.user.setMessageEvent(connection::emit);
                 getData("");
                 connection.emit("login", "Success!");
                 attachListeners();

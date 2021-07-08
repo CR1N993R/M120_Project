@@ -22,7 +22,7 @@ public class Message {
     private long id;
     @Column(name = "content")
     private String content;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "fk_sent_by")
     private User sentBy;
     @Column(name = "sent_at")

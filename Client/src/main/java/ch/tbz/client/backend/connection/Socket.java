@@ -38,7 +38,6 @@ public class Socket {
     }
 
     private static void getData(String msg){
-        System.out.println("IN:     " + msg);
         if (user == null) {
             user = new User();
         }
@@ -49,7 +48,6 @@ public class Socket {
     }
 
     public static void emit(String event, String message){
-        System.out.println("Out:     " + event + " | " + message);
         connection.emit(event,message);
     }
 

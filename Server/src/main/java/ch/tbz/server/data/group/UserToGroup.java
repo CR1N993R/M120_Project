@@ -19,12 +19,12 @@ public class UserToGroup {
     @GeneratedValue(generator = "incrementor")
     @GenericGenerator(name = "incrementor", strategy = "increment")
     private long id;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "fk_user")
     private User user;
     @Column(name = "unread_messages")
     private int unreadMessages = 0;
-    @ManyToOne(fetch = FetchType.LAZY)
+    @ManyToOne()
     @JoinColumn(name = "fk_chat")
     private GroupChat chat;
 

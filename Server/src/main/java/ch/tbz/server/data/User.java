@@ -40,10 +40,11 @@ public class User {
     @Transient
     private boolean online = false;
     @Transient
+    @Setter
     private MessageEvent messageEvent;
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<UserToFriend> friends = new ArrayList<>();
-    @OneToMany(fetch = FetchType.LAZY, mappedBy = "user")
+    @OneToMany(mappedBy = "user")
     private List<UserToGroup> groups = new ArrayList<>();
 
     public User(String username, String password, MessageEvent callback){
@@ -58,7 +59,6 @@ public class User {
             Database.persistObject(this);
             emit("register", "Success!");
         } catch (InvalidKeySpecException | NoSuchAlgorithmException | PersistenceException ignored) {
-            ignored.printStackTrace();
         }
     }
 
