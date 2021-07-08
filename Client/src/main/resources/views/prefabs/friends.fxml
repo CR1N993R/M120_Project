@@ -3,7 +3,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="350" prefWidth="325" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller._prefaps.FriendsController">
+<AnchorPane prefHeight="350" prefWidth="325" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.prefabs.FriendsController">
     <ScrollPane layoutX="25" layoutY="25.0" prefHeight="300.0" prefWidth="138.0" >
         <VBox fx:id="friendsVbox" layoutX="25" layoutY="25.0" prefHeight="300.0" prefWidth="138.0" />
     </ScrollPane>

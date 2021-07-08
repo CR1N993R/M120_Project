@@ -4,13 +4,11 @@ import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.*;
 import ch.tbz.client.backend.interfaces.Chat;
 import ch.tbz.client.frontend.UIManager;
-import ch.tbz.client.frontend.controller._prefaps.*;
-import javafx.event.ActionEvent;
+import ch.tbz.client.frontend.controller.prefabs.*;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.VBox;
 
@@ -62,7 +60,7 @@ public class HomeController extends ControllerBase {
     private void initServerBar(Group group) {
         vboxFriends.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(TextChannelController.class.getResource("views/_prefaps/textChannel.fxml"));
+            FXMLLoader loader = new FXMLLoader(TextChannelController.class.getResource("views/prefabs/textChannel.fxml"));
             Parent root = loader.load();
             TextChannelController controller = loader.getController();
             controller.init(group);
@@ -75,7 +73,7 @@ public class HomeController extends ControllerBase {
     private void initChat(Chat chatMessage) {
         chat.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(ChatController.class.getClassLoader().getResource("views/_prefaps/chat.fxml"));
+            FXMLLoader loader = new FXMLLoader(ChatController.class.getClassLoader().getResource("views/prefabs/chat.fxml"));
             Parent root = loader.load();
             ChatController controller = loader.getController();
             controller.init(chatMessage);
@@ -88,7 +86,7 @@ public class HomeController extends ControllerBase {
     private void initFriends() {
         vboxFriends.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(FriendsBarController.class.getClassLoader().getResource("views/_prefaps/friendsBar.fxml"));
+            FXMLLoader loader = new FXMLLoader(FriendsBarController.class.getClassLoader().getResource("views/prefabs/friendsBar.fxml"));
             Parent root = loader.load();
             FriendsBarController controller = loader.getController();
             controller.init(user);
@@ -102,7 +100,7 @@ public class HomeController extends ControllerBase {
         vboxServer.getChildren().clear();
         for (Group group : user.getGroups()) {
             try {
-                FXMLLoader loader = new FXMLLoader(GroupIconController.class.getClassLoader().getResource("views/_prefaps/groupIcon.fxml"));
+                FXMLLoader loader = new FXMLLoader(GroupIconController.class.getClassLoader().getResource("views/prefabs/groupIcon.fxml"));
                 Parent root = loader.load();
                 GroupIconController controller = loader.getController();
                 controller.init(group);

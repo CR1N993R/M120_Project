@@ -1,8 +1,7 @@
-package ch.tbz.client.frontend.controller._prefaps;
+package ch.tbz.client.frontend.controller.prefabs;
 
 import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
-import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.frontend.controller.ControllerBase;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -18,7 +17,7 @@ public class RequestsController extends ControllerBase {
         for (Friend friend : Socket.getUser().getFriends()) {
             if (friend.getState().equals("received")) {
                 try {
-                    FXMLLoader loader = new FXMLLoader(FriendRequestController.class.getClassLoader().getResource("views/_prefaps/friendRequest.fxml"));
+                    FXMLLoader loader = new FXMLLoader(FriendRequestController.class.getClassLoader().getResource("views/prefabs/friendRequest.fxml"));
                     Parent root = loader.load();
                     FriendRequestController controller = loader.getController();
                     controller.init(friend);

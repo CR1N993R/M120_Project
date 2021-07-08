@@ -1,4 +1,4 @@
-package ch.tbz.client.frontend.controller._prefaps;
+package ch.tbz.client.frontend.controller.prefabs;
 
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.User;
@@ -20,7 +20,7 @@ public class FriendsBarController {
         for (Friend friend : user.getFriends()) {
             try {
                 if (friend.getState().equals("accepted")) {
-                    FXMLLoader loader = new FXMLLoader(FriendIconController.class.getClassLoader().getResource("views/_prefaps/friendIcon.fxml"));
+                    FXMLLoader loader = new FXMLLoader(FriendIconController.class.getClassLoader().getResource("views/prefabs/friendIcon.fxml"));
                     Parent root = loader.load();
                     FriendIconController controller = loader.getController();
                     controller.init(friend);

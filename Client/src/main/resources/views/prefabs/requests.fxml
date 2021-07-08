@@ -5,7 +5,7 @@
 
 <AnchorPane prefHeight="322.0" prefWidth="325" xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
-            fx:controller="ch.tbz.client.frontend.controller._prefaps.RequestsController">
+            fx:controller="ch.tbz.client.frontend.controller.prefabs.RequestsController">
     <AnchorPane prefHeight="322.0" prefWidth="325.0">
         <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
             <ScrollPane hbarPolicy="never" layoutX="13.0" layoutY="12.0" prefHeight="295.0" prefWidth="298.0"

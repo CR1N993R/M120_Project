@@ -1,10 +1,9 @@
-package ch.tbz.client.frontend.controller._prefaps;
+package ch.tbz.client.frontend.controller.prefabs;
 
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.backend.data.Message;
 import ch.tbz.client.backend.interfaces.Chat;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.control.TextField;
@@ -34,7 +33,7 @@ public class ChatController {
         vboxMessages.getChildren().clear();
         for(Message message : messages){
             try {
-                FXMLLoader loader = new FXMLLoader(MessageController.class.getClassLoader().getResource("views/_prefaps/message.fxml"));
+                FXMLLoader loader = new FXMLLoader(MessageController.class.getClassLoader().getResource("views/prefabs/message.fxml"));
                 Parent root = loader.load();
                 MessageController controller = loader.getController();
                 controller.init(message);

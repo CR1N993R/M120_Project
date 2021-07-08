@@ -1,16 +1,11 @@
-package ch.tbz.client.frontend.controller._prefaps;
+package ch.tbz.client.frontend.controller.prefabs;
 
 import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.backend.data.Person;
 import ch.tbz.client.frontend.controller.ControllerBase;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
 import javafx.scene.control.Label;
 import javafx.scene.control.Tooltip;
-import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.VBox;
-
-import java.io.IOException;
 
 public class TextChannelController extends ControllerBase {
    public Label channelName;

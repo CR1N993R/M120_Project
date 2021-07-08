@@ -1,4 +1,4 @@
-package ch.tbz.client.frontend.controller._prefaps;
+package ch.tbz.client.frontend.controller.prefabs;
 
 import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
