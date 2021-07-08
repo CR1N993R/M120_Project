@@ -19,6 +19,9 @@ public class Main extends Application {
         Socket.init();
         DataProperties.loadData();
         primaryStage.show();
+        primaryStage.setOnCloseRequest((s) -> {
+            Socket.close();
+        });
         UIManager.primaryStage = primaryStage;
         UIManager.secondaryStage = new Stage();
         UIManager.login();

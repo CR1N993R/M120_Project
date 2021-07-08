@@ -1,5 +1,6 @@
 package ch.tbz.client.frontend.controller;
 
+import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.*;
 import ch.tbz.client.backend.interfaces.Chat;
 import ch.tbz.client.frontend.UIManager;
@@ -15,7 +16,7 @@ import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 
-public class HomeController extends ControllerBase{
+public class HomeController extends ControllerBase {
     public VBox vboxServer;
     public Label usernameLabel;
     public Label uniqueIdLabel;
@@ -24,35 +25,36 @@ public class HomeController extends ControllerBase{
     public Tooltip tooltipAddServer;
     public Tooltip tooltip;
     private User user;
+    private Group group;
+    private Friend friend;
 
-    public void init(User user) {
+    public void baseInit(User user) {
         this.user = user;
         this.usernameLabel.setText(this.user.getUsername());
         this.uniqueIdLabel.setText(this.user.getUserId() + "");
         tooltipAddServer.setText("New Groupchat");
         tooltip.setText("Show Chats with friends");
         initServers();
+    }
+
+    public void init(User user) {
+        Socket.addGetDataListener(this::reload);
+        baseInit(user);
         initFriends();
     }
 
     public void init(User user, Friend friend) {
-        this.user = user;
-        this.usernameLabel.setText(this.user.getUsername());
-        this.uniqueIdLabel.setText(this.user.getUserId() + "");
-        tooltipAddServer.setText("New Groupchat");
-        tooltip.setText("Show Chats with friends");
-        initServers();
+        Socket.addGetDataListener(this::reload);
+        this.friend = friend;
+        baseInit(user);
         initFriends();
         initChat(friend);
     }
 
     public void init(User user, Group group) {
-        this.user = user;
-        this.usernameLabel.setText(this.user.getUsername());
-        this.uniqueIdLabel.setText(this.user.getUserId() + "");
-        tooltipAddServer.setText("New Groupchat");
-        tooltip.setText("Show Chats with friends");
-        initServers();
+        Socket.addGetDataListener(this::reload);
+        this.group = group;
+        baseInit(user);
         initServerBar(group);
         initChat(group);
     }
@@ -111,15 +113,28 @@ public class HomeController extends ControllerBase{
         }
     }
 
-    public void settingsClicked(MouseEvent mouseEvent) {
+    public void settingsClicked() {
         UIManager.settings();
     }
 
-    public void friendsClicked(ActionEvent actionEvent) {
+    public void friendsClicked() {
         UIManager.home();
     }
 
-    public void addGroupClicked(ActionEvent actionEvent) {
+    public void addGroupClicked() {
         UIManager.addGroup();
+    }
+
+    public void reload() {
+        baseInit(user);
+        if (group != null) {
+            initServerBar(group);
+            initChat(group);
+        } else if (friend != null) {
+            initFriends();
+            initChat(friend);
+        }else {
+            initFriends();
+        }
     }
 }

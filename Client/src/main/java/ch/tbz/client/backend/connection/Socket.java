@@ -28,16 +28,19 @@ public class Socket {
         }
     }
 
-    private static void attachListeners(){
+    private static void attachListeners() {
         connection.setOn("getData", Socket::getData);
         connection.setOn("updateUserStatus", Socket::updateUserStatus);
     }
 
     private static void updateUserStatus(String s) {
         DataParser.updateUserState(s);
+        for (UpdateCallback listener : getDataListeners) {
+            CallbackWrapper.update(listener);
+        }
     }
 
-    private static void getData(String msg){
+    private static void getData(String msg) {
         if (user == null) {
             user = new User();
         }
@@ -47,46 +50,54 @@ public class Socket {
         }
     }
 
-    public static void emit(String event, String message){
-        connection.emit(event,message);
+    public static void emit(String event, String message) {
+        connection.emit(event, message);
     }
 
-    public static void login(String username, String password, MessageCallback callback){
+    public static void login(String username, String password, MessageCallback callback) {
         connection.setOn("login", (s) -> {
             connection.removeAllListenersByEvent("login");
             CallbackWrapper.sendMessage(callback, s);
         });
-        connection.emit("login", "{\"username\":\""+ username +"\",\"password\":\"" + password + "\"}");
+        connection.emit("login", "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}");
     }
 
-    public static void getUser(String id, UserCallback callback){
+    public static void getUser(String id, UserCallback callback) {
         connection.setOn("getUserById", (s) -> {
             connection.removeAllListenersByEvent("getUserById");
             try {
                 if (s.length() > 0) {
                     JSONObject user = (JSONObject) new JSONParser().parse(s);
                     CallbackWrapper.sendPersons(callback, DataParser.parsePerson(user));
-                }else {
+                } else {
                     CallbackWrapper.sendPersons(callback, null);
                 }
-            } catch (ParseException ignored) { }
+            } catch (ParseException ignored) {
+            }
         });
-        connection.emit("getUserById", "{\"id\":\""+ id +"\"}");
+        connection.emit("getUserById", "{\"id\":\"" + id + "\"}");
     }
 
-    public static void register(String username, String password, MessageCallback callback){
+    public static void register(String username, String password, MessageCallback callback) {
         connection.setOn("register", (s) -> {
             connection.removeAllListenersByEvent("register");
             CallbackWrapper.sendMessage(callback, s);
         });
-        connection.emit("createUser", "{\"username\":\""+ username +"\",\"password\":\"" + password + "\"}");
+        connection.emit("createUser", "{\"username\":\"" + username + "\",\"password\":\"" + password + "\"}");
     }
 
-    public static void addGetDataListener(UpdateCallback callback){
+    public static void addGetDataListener(UpdateCallback callback) {
         getDataListeners.add(callback);
     }
 
-    public static void clearGetDataListeners(){
+    public static void clearGetDataListeners() {
         getDataListeners.clear();
+    }
+
+    public static void close() {
+        try {
+            connection.close();
+        } catch (IOException ignored) {
+        }
     }
 }

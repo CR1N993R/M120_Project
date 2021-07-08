@@ -46,7 +46,7 @@ public class ChatController {
     }
 
 
-    public void sendClicked(ActionEvent actionEvent) {
+    public void sendClicked() {
         String text = this.messageTb.getText();
         text = text.replace("/shrug", "¯\\_(ツ)_/¯").replace("/tableflip", "(╯°□°）╯︵ ┻━┻").replace("/unflip", "┬─┬ ノ( ゜-゜ノ)");
         switch (type){
