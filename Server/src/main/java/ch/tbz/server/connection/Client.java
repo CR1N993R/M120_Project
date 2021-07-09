@@ -165,7 +165,7 @@ public class Client {
         if (jo != null) {
             int user = Math.toIntExact(Long.parseLong((String) jo.get("userid")));
             int group = Math.toIntExact(Long.parseLong((String) jo.get("groupId")));
-            this.user.addUserToGroup(user, group);
+            this.user.addUserToGroup(group, user);
         }
     }
 
@@ -182,6 +182,7 @@ public class Client {
         if (jo != null) {
             int groupId = Math.toIntExact(Long.parseLong((String) jo.get("groupId")));
             user.groupMessagesRead(groupId);
+            getData("");
         }
     }
 
@@ -190,6 +191,7 @@ public class Client {
         if (jo != null) {
             int userId = Math.toIntExact(Long.parseLong((String) jo.get("userid")));
             user.friendMessagesRead(userId);
+            getData("");
         }
     }
 

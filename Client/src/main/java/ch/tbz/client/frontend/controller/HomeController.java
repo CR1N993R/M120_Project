@@ -18,53 +18,57 @@ public class HomeController extends ControllerBase {
     public VBox vboxServer;
     public Label usernameLabel;
     public Label uniqueIdLabel;
-    public VBox vboxFriends;
+    public AnchorPane paneFriends;
     public AnchorPane chat;
     public Tooltip tooltipAddServer;
     public Tooltip tooltip;
-    private User user;
-    private Group group;
-    private Friend friend;
+    private long group;
+    private long friend;
 
-    public void baseInit(User user) {
-        this.user = user;
-        this.usernameLabel.setText(this.user.getUsername());
-        this.uniqueIdLabel.setText(this.user.getUserId() + "");
+    public void baseInit() {
+        this.usernameLabel.setText(Socket.getUser().getUsername());
+        this.uniqueIdLabel.setText(Socket.getUser().getUserId() + "");
         tooltipAddServer.setText("New Groupchat");
         tooltip.setText("Show Chats with friends");
         initServers();
     }
 
-    public void init(User user) {
+    public void init() {
         Socket.addGetDataListener(this::reload);
-        baseInit(user);
+        baseInit();
         initFriends();
     }
 
-    public void init(User user, Friend friend) {
+    public void init(Friend friend) {
+        if (friend.getUnreadMessages() != 0) {
+            friend.friendMessagesRead();
+        }
         Socket.addGetDataListener(this::reload);
-        this.friend = friend;
-        baseInit(user);
+        this.friend = friend.getUserId();
+        baseInit();
         initFriends();
         initChat(friend);
     }
 
-    public void init(User user, Group group) {
+    public void init(Group group) {
+        if (group.getUnreadMessages() != 0) {
+            group.groupMessagesRead();
+        }
         Socket.addGetDataListener(this::reload);
-        this.group = group;
-        baseInit(user);
+        this.group = group.getGroupId();
+        baseInit();
         initServerBar(group);
         initChat(group);
     }
 
     private void initServerBar(Group group) {
-        vboxFriends.getChildren().clear();
+        paneFriends.getChildren().clear();
         try {
-            FXMLLoader loader = new FXMLLoader(TextChannelController.class.getResource("views/prefabs/textChannel.fxml"));
+            FXMLLoader loader = new FXMLLoader(TextChannelController.class.getClassLoader().getResource("views/prefabs/textChannel.fxml"));
             Parent root = loader.load();
             TextChannelController controller = loader.getController();
             controller.init(group);
-            vboxFriends.getChildren().add(root);
+            paneFriends.getChildren().add(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -84,13 +88,13 @@ public class HomeController extends ControllerBase {
     }
 
     private void initFriends() {
-        vboxFriends.getChildren().clear();
+        paneFriends.getChildren().clear();
         try {
             FXMLLoader loader = new FXMLLoader(FriendsBarController.class.getClassLoader().getResource("views/prefabs/friendsBar.fxml"));
             Parent root = loader.load();
             FriendsBarController controller = loader.getController();
-            controller.init(user);
-            vboxFriends.getChildren().add(root);
+            controller.init("");
+            paneFriends.getChildren().add(root);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -98,7 +102,7 @@ public class HomeController extends ControllerBase {
 
     private void initServers() {
         vboxServer.getChildren().clear();
-        for (Group group : user.getGroups()) {
+        for (Group group : Socket.getUser().getGroups()) {
             try {
                 FXMLLoader loader = new FXMLLoader(GroupIconController.class.getClassLoader().getResource("views/prefabs/groupIcon.fxml"));
                 Parent root = loader.load();
@@ -124,13 +128,14 @@ public class HomeController extends ControllerBase {
     }
 
     public void reload() {
-        baseInit(user);
-        if (group != null) {
-            initServerBar(group);
-            initChat(group);
-        } else if (friend != null) {
+        baseInit();
+        if (group != 0) {
+            Group g = Socket.getUser().getGroupById(group);
+            initServerBar(g);
+            initChat(g);
+        } else if (friend != 0) {
             initFriends();
-            initChat(friend);
+            initChat(Socket.getUser().getUserById(friend));
         }else {
             initFriends();
         }

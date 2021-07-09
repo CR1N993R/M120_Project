@@ -54,9 +54,12 @@ public class GroupChat {
     }
 
     public void addUser(User user) {
-        this.users.add(new UserToGroup(user, this));
-        sendDataToUsers();
-        Database.persistObject(this);
+        System.out.println("t");
+        if (users.stream().noneMatch(userToGroup -> userToGroup.getUser() == user)) {
+            this.users.add(new UserToGroup(user, this));
+            sendDataToUsers();
+            Database.persistObject(this);
+        }
     }
 
     public void addMessage(String text, User user) {

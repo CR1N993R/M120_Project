@@ -4,8 +4,8 @@
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="361.0" prefWidth="137.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.prefabs.FriendsBarController">
-    <TextField fx:id="search" layoutY="3.0" prefHeight="26.0" prefWidth="138.0" promptText="🔎" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
-    <ScrollPane hbarPolicy="never" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="138.0" vbarPolicy="never" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
+    <TextField fx:id="search" layoutY="3.0" onKeyPressed="#search" prefHeight="26.0" prefWidth="138.0" promptText="🔎" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="3.0" />
+    <ScrollPane hbarPolicy="never" layoutY="54.0" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" minHeight="0.0" minWidth="0.0" prefHeight="307.0" prefWidth="138.0" style="-fx-background-color: transparent;" vbarPolicy="never" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="54.0">
         <VBox fx:id="friends" maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" prefHeight="306.0" prefWidth="138.0">
 
         </VBox>

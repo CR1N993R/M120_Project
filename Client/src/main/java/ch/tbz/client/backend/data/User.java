@@ -37,4 +37,23 @@ public class User extends Person {
     public void logout() {
         Socket.emit("logout", "");
     }
+
+    public Friend getUserById(long id){
+        for (Friend friend : friends){
+            if (friend.getUserId() == id){
+                return friend;
+            }
+        }
+        return null;
+    }
+
+    public Group getGroupById(long id){
+        for (Group group : groups){
+            if (group.getGroupId() == id){
+                return group;
+            }
+        }
+        return null;
+    }
+
 }

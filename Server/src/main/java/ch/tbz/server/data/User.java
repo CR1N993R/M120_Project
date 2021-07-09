@@ -208,7 +208,7 @@ public class User {
 
     public void groupMessagesRead(int groupId){
         for (UserToGroup group : groups) {
-            if (group.getId() == groupId) {
+            if (group.getChat().getId() == groupId) {
                 group.clearUnreadMessages();
                 return;
             }
@@ -217,7 +217,7 @@ public class User {
 
     public void friendMessagesRead(int friendId){
         for (UserToFriend friend : friends) {
-            if (friend.getId() == friendId){
+            if (friend.getFriend().getUid() == friendId){
                 friend.clearUnreadMessages();
                 return;
             }

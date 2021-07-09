@@ -23,7 +23,24 @@
         <tooltip>
             <Tooltip fx:id="usernameTooltip"/>
         </tooltip>
+        <contextMenu>
+            <ContextMenu>
+                <items>
+                    <Menu text="Invite to Groupchat" fx:id="menu2">
+                    </Menu>
+                </items>
+            </ContextMenu>
+        </contextMenu>
     </Label>
     <Circle onMouseClicked="#iconClicked" fx:id="statusCircle" fill="#8f979f" layoutX="110.79999999999993" layoutY="23.0" radius="9.0" stroke="BLACK" strokeType="INSIDE" AnchorPane.rightAnchor="17.200000000000074"/>
-    <Label onMouseClicked="#iconClicked" fx:id="newMassageCount" alignment="CENTER_RIGHT" layoutX="116.0" layoutY="14.0" prefHeight="18.0" prefWidth="18.0" textAlignment="RIGHT" textFill="RED"/>
+    <Label onMouseClicked="#iconClicked" fx:id="newMassageCount" alignment="CENTER_RIGHT" layoutX="116.0" layoutY="14.0" prefHeight="18.0" prefWidth="18.0" textAlignment="RIGHT" textFill="RED">
+        <contextMenu>
+            <ContextMenu>
+                <items>
+                    <Menu text="Invite to Groupchat" fx:id="menu3">
+                    </Menu>
+                </items>
+            </ContextMenu>
+        </contextMenu>
+    </Label>
 </AnchorPane>

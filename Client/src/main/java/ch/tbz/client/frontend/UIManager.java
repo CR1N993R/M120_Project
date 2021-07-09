@@ -7,8 +7,10 @@ import ch.tbz.client.backend.util.DataProperties;
 import ch.tbz.client.frontend.controller.ControllerBase;
 import ch.tbz.client.Main;
 import javafx.fxml.FXMLLoader;
+import javafx.geometry.Rectangle2D;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
+import javafx.stage.Screen;
 import javafx.stage.Stage;
 
 import java.io.IOException;
@@ -23,6 +25,7 @@ public class UIManager {
             Parent root = loader.load();
             stage.setTitle(title);
             Scene scene = new Scene(root);
+
             if (DataProperties.isDarkmode()) {
                 scene.getStylesheets().add("darkmode.css");
             }
@@ -42,15 +45,15 @@ public class UIManager {
     }
 
     public static void home() {
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser());
+        loadScene(primaryStage, "views/home.fxml", "Home").init();
     }
 
     public static void home(Friend friend) {
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), friend);
+        loadScene(primaryStage, "views/home.fxml", "Home").init(friend);
     }
 
     public static void home(Group group) {
-        loadScene(primaryStage, "views/home.fxml", "Home").init(Socket.getUser(), group);
+        loadScene(primaryStage, "views/home.fxml", "Home").init(group);
     }
 
     public static void addFriend() {

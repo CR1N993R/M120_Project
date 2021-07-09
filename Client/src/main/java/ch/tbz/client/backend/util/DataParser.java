@@ -20,7 +20,7 @@ public class DataParser {
             String userName = (String) object.get("username");
             boolean loggedIn = (boolean) object.get("online");
             ArrayList<Friend> friends = parseFriends((JSONArray) object.get("friends"));
-            ArrayList<Group> groups = parseGroups((JSONArray) object.get("groups"));
+            ArrayList<Group> groups = parseGroups((JSONArray) object.get("group"));
             user.updateData(userId, userName, groups, friends, loggedIn);
         } catch (ParseException e) {
             e.printStackTrace();
@@ -56,8 +56,10 @@ public class DataParser {
 
     private static ArrayList<Message> parseMessages(JSONArray array) {
         ArrayList<Message> messages = new ArrayList<>();
-        for (Object o : array) {
-            messages.add(parseMessage((JSONObject) o));
+        if (array != null) {
+            for (Object o : array) {
+                messages.add(parseMessage((JSONObject) o));
+            }
         }
         return messages;
     }

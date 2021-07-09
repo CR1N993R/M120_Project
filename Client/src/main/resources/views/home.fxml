@@ -9,20 +9,9 @@
     <children>
         <AnchorPane prefHeight="400.0" prefWidth="70.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0">
             <children>
-                <ScrollPane hbarPolicy="NEVER" layoutX="-1.0" prefHeight="400.0" prefWidth="71.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="-1.0" AnchorPane.rightAnchor="1.0" AnchorPane.topAnchor="0.0">
+                <ScrollPane hbarPolicy="NEVER" layoutX="1.0" layoutY="70.0" prefHeight="262.0" prefWidth="76.0" style="-fx-background-color: transparent;" vbarPolicy="NEVER" AnchorPane.bottomAnchor="69.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="-3.0" AnchorPane.topAnchor="69.0">
                     <content>
-                        <VBox fx:id="vboxServer" minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="71.0">
-                            <children>
-                                <AnchorPane prefHeight="65.0" prefWidth="71.0">
-                                    <Button layoutX="5.0" layoutY="2.0" onAction="#friendsClicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;">
-                                        <tooltip>
-                                            <Tooltip fx:id="tooltip" />
-                                        </tooltip>
-                                    </Button>
-                                </AnchorPane>
-                                <Line endX="-25.0" startX="-100.0" />
-                            </children>
-                        </VBox>
+                        <VBox fx:id="vboxServer" minHeight="0.0" minWidth="0.0" prefHeight="332.0" prefWidth="71.0" />
                     </content>
                 </ScrollPane>
                 <AnchorPane layoutY="334.0" prefHeight="65.0" prefWidth="71.0" AnchorPane.bottomAnchor="0.4000000000000057" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
@@ -32,8 +21,16 @@
                         </tooltip>
                     </Button>
                 </AnchorPane>
+                    <AnchorPane prefHeight="65.0" prefWidth="71.0">
+                        <Button layoutX="5.0" layoutY="2.0" onAction="#friendsClicked" prefHeight="61" prefWidth="61" style="-fx-background-radius: 45;">
+                            <tooltip>
+                                <Tooltip fx:id="tooltip" />
+                            </tooltip>
+                        </Button>
+                    </AnchorPane>
+                    <Line endX="-25.0" startX="-100.0" />
             </children></AnchorPane>
-        <AnchorPane layoutX="70.0" prefHeight="400.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="0.0">
+        <AnchorPane layoutX="70.0" prefHeight="400.0" prefWidth="137.0" style="-fx-border-color: black;" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="70.0" AnchorPane.topAnchor="0.0">
             <children>
                 <AnchorPane layoutY="361.0" prefHeight="39.0" prefWidth="137.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0">
                     <children>
@@ -49,11 +46,9 @@
                             </font>
                         </Label>
                     </children></AnchorPane>
-                <ScrollPane hbarPolicy="NEVER" prefHeight="361.0" prefWidth="137.0" vbarPolicy="NEVER" AnchorPane.bottomAnchor="38.39999999999998" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                    <content>
-                        <VBox fx:id="vboxFriends" minHeight="0.0" minWidth="0.0" prefHeight="361.0" prefWidth="137.0" />
-                    </content>
-                </ScrollPane>
+                <AnchorPane fx:id="paneFriends" prefHeight="361.0" prefWidth="137.0" style="-fx-background-color: transparent;" AnchorPane.bottomAnchor="38.39999999999998" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+
+                </AnchorPane>
             </children></AnchorPane>
         <AnchorPane fx:id="chat" layoutX="213.0" prefHeight="400.0" prefWidth="393.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="213.0" AnchorPane.rightAnchor="-6.0" AnchorPane.topAnchor="0.0" />
     </children>

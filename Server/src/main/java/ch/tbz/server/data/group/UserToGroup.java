@@ -29,7 +29,6 @@ public class UserToGroup {
     private GroupChat chat;
 
     public UserToGroup(User user, GroupChat groupChat){
-        groupChat.getUsers().add(this);
         this.chat = groupChat;
         this.user = user;
         Database.persistObject(this);

@@ -10,7 +10,9 @@ public class NewGroupChatController extends ControllerBase {
     public TextField name;
 
     public void createClicked(ActionEvent actionEvent) {
+        Socket.addGetDataListener(()->{
+            new Main().load();
+        });
         Socket.getUser().createGroup(name.getText());
-        new Main().load();
     }
 }

@@ -3,6 +3,7 @@ package ch.tbz.client.frontend.controller.prefabs;
 import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
+import ch.tbz.client.backend.data.Person;
 import ch.tbz.client.frontend.UIManager;
 import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
@@ -12,6 +13,8 @@ import javafx.scene.control.MenuItem;
 import javafx.scene.control.Tooltip;
 import javafx.scene.input.MouseButton;
 import javafx.scene.input.MouseEvent;
+
+import java.util.ArrayList;
 
 public class GroupIconController {
     public Button serverButton;
@@ -25,13 +28,16 @@ public class GroupIconController {
         tooltip.setText(this.group.getGroupName());
 
         for (Friend friend : Socket.getUser().getFriends()){
-            MenuItem item = new MenuItem(friend.getUsername() + " | " +friend.getUserId());
-            item.setOnAction(new EventHandler<ActionEvent>() {
-                @Override
-                public void handle(ActionEvent event) {
-                    group.addUserToGroup(friend.getUserId());
-                }
-            });
+            if (friend.getState().equals("accepted")) {
+                MenuItem item = new MenuItem(friend.getUsername() + " | " + friend.getUserId());
+                item.setOnAction(new EventHandler<ActionEvent>() {
+                    @Override
+                    public void handle(ActionEvent event) {
+                        group.addUserToGroup(friend.getUserId());
+                    }
+                });
+                menu.getItems().add(item);
+            }
         }
     }
 

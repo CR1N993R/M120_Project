@@ -17,7 +17,7 @@ public class FriendsController {
         friendsVbox.getChildren().clear();
         for (Friend friend : Socket.getUser().getFriends()) {
             try {
-                FXMLLoader loader = new FXMLLoader(FriendIconController.class.getClassLoader().getResource("friendIcon.fxml"));
+                FXMLLoader loader = new FXMLLoader(FriendIconController.class.getClassLoader().getResource("views/prefabs/friendIcon.fxml"));
                 Parent root = loader.load();
                 FriendIconController controller = loader.getController();
                 controller.init(friend);
