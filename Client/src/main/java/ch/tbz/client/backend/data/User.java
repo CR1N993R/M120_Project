@@ -32,6 +32,7 @@ public class User extends Person {
 
     public void createGroup(String groupName) {
         Socket.emit("createGroup", "{\"groupName\":\"" + groupName + "\"}");
+
     }
 
     public void logout() {

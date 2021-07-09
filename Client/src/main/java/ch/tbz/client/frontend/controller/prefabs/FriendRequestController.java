@@ -13,11 +13,11 @@ public class FriendRequestController {
         this.usernameLabel.setText(friend.getUsername());
     }
 
-    public void declinedClicked(ActionEvent actionEvent) {
+    public void declinedClicked() {
         friend.declineFriendRequest();
     }
 
-    public void acceptClicked(ActionEvent actionEvent) {
+    public void acceptClicked() {
         friend.acceptFriendRequest();
     }
 }

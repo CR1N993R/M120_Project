@@ -9,19 +9,29 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
+import java.util.Locale;
+
 public class LoginController extends ControllerBase {
     public TextField emailTb;
     public PasswordField pwdTb;
     public Label label;
 
-    public void forgotPasswordClicked(MouseEvent mouseEvent) {
+    public void init() {
+        UIManager.primaryStage.getScene().setOnKeyPressed((e) -> {
+            if (e.getCode().toString().equals("ENTER")){
+                clicked();
+            }
+        });
     }
 
-    public void registerClicked(MouseEvent mouseEvent) {
+    public void forgotPasswordClicked() {
+    }
+
+    public void registerClicked() {
         UIManager.register();
     }
 
-    public void clicked(ActionEvent actionEvent) {
+    public void clicked() {
         Socket.login(emailTb.getText(), pwdTb.getText(), (s)->{
             if(s.equals("Success!")){
                 UIManager.home();

@@ -13,6 +13,11 @@ public class RequestsController extends ControllerBase {
     public VBox friendRequestVbox;
 
     public void init(){
+        loadData();
+        Socket.addGetDataListener(this::loadData);
+    }
+
+    public void loadData(){
         friendRequestVbox.getChildren().clear();
         for (Friend friend : Socket.getUser().getFriends()) {
             if (friend.getState().equals("received")) {

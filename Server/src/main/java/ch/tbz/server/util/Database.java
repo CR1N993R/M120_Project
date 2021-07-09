@@ -16,7 +16,7 @@ public class Database {
     }
 
     public static List<User> getUserByUsersName(String name){
-        return em.createQuery("from User U where U.username = '" + name +"'", User.class).getResultList();
+        return em.createQuery("from User U where lower(U.username) = '" + name +"'", User.class).getResultList();
     }
 
     public static User getUsersById(long id) {

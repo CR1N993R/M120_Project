@@ -217,7 +217,7 @@ public class User {
 
     public void friendMessagesRead(int friendId){
         for (UserToFriend friend : friends) {
-            if (friend.getFriend().getUid() == friendId){
+            if (friend.getFriend() .uid == friendId){
                 friend.clearUnreadMessages();
                 return;
             }

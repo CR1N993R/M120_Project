@@ -9,26 +9,36 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
-public class RegisterController extends ControllerBase{
+import java.util.Locale;
+
+public class RegisterController extends ControllerBase {
     public TextField usernameTb;
     public PasswordField pwdTb;
     public Label errorMSG;
 
-    public void haveAccountClicked(MouseEvent mouseEvent) {
+    public void init() {
+        UIManager.primaryStage.getScene().setOnKeyPressed((e) -> {
+            if (e.getCode().toString().equals("ENTER")) {
+                registerClicked();
+            }
+        });
+    }
+
+    public void haveAccountClicked() {
         UIManager.login();
     }
 
-    public void registerClicked(ActionEvent actionEvent) {
+    public void registerClicked() {
         String msg = Validator.validateRegister(usernameTb.getText(), pwdTb.getText());
         if (msg.equals("")) {
             Socket.register(usernameTb.getText(), pwdTb.getText(), (s) -> {
-                if(s.equals("Success!")){
+                if (s.equals("Success!")) {
                     UIManager.login();
-                }else {
+                } else {
                     errorMSG.setText(s);
                 }
             });
-        }else{
+        } else {
             errorMSG.setText(msg);
         }
     }

@@ -26,7 +26,7 @@ public class Client {
     public void login(String msg) {
         try {
             JSONObject object = (JSONObject) new JSONParser().parse(msg);
-            List<User> user = Database.getUserByUsersName((String) object.get("username"));
+            List<User> user = Database.getUserByUsersName(((String) object.get("username")).toLowerCase());
             String password = Hashing.hash((String) object.get("password"));
             if (user.size() == 1 && user.get(0).getPassword().equals(password)) {
                 this.user = user.get(0);

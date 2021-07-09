@@ -24,6 +24,11 @@ public class ChatController {
     public String type;
 
     public void init(Chat chatMessages){
+        messageTb.setOnKeyPressed((e) -> {
+            if (messageTb.isFocused() && e.getCode().toString().equals("ENTER")){
+                send(messageTb.getText());
+            }
+        });
         this.messages = chatMessages.getMessages();
         if (chatMessages instanceof Friend){
             type = "friend";
@@ -47,9 +52,7 @@ public class ChatController {
         }
     }
 
-
-    public void sendClicked() {
-        String text = this.messageTb.getText();
+    public void send(String text){
         text = text.replace("/shrug", "¯\\_(ツ)_/¯").replace("/tableflip", "(╯°□°）╯︵ ┻━┻").replace("/unflip", "┬─┬ ノ( ゜-゜ノ)");
         switch (type) {
             case "group" -> {
@@ -59,5 +62,10 @@ public class ChatController {
                 this.friend.sendToFriend(text);
             }
         }
+    }
+
+    public void sendClicked() {
+        String text = this.messageTb.getText();
+        send(text);
     }
 }
