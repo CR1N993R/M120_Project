@@ -51,7 +51,7 @@ public class DataParser {
         int id = Math.toIntExact((Long) o.get("id"));
         int unreadMessages = Math.toIntExact((Long) o.get("unreadMessages"));
         String name = (String) o.get("name");
-        return new Group(id, name, unreadMessages, parsePersons((JSONArray) o.get("users")), parseMessages((JSONArray) o.get("messages")));
+        return new Group(id, name, unreadMessages, parsePersons((JSONArray) o.get("users")), parseMessages((JSONArray) o.get("message")));
     }
 
     private static ArrayList<Message> parseMessages(JSONArray array) {

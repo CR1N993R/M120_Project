@@ -131,11 +131,18 @@ public class HomeController extends ControllerBase {
         baseInit();
         if (group != 0) {
             Group g = Socket.getUser().getGroupById(group);
+            if (g.getUnreadMessages() != 0) {
+                g.groupMessagesRead();
+            }
             initServerBar(g);
             initChat(g);
         } else if (friend != 0) {
+            Friend f = Socket.getUser().getUserById(friend);
+            if (f.getUnreadMessages() != 0) {
+                f.friendMessagesRead();
+            }
             initFriends();
-            initChat(Socket.getUser().getUserById(friend));
+            initChat(f);
         }else {
             initFriends();
         }
