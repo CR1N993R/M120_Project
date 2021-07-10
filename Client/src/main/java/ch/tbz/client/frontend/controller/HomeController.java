@@ -78,9 +78,15 @@ public class HomeController extends ControllerBase {
         chat.getChildren().clear();
         try {
             FXMLLoader loader = new FXMLLoader(ChatController.class.getClassLoader().getResource("views/prefabs/chat.fxml"));
-            Parent root = loader.load();
+            AnchorPane root = loader.load();
             ChatController controller = loader.getController();
             controller.init(chatMessage);
+            chat.heightProperty().addListener((observable, oldValue, newValue) -> {
+                root.setPrefHeight(newValue.doubleValue());
+            });
+            chat.widthProperty().addListener((observable, oldValue, newValue) -> {
+                root.setPrefWidth(newValue.doubleValue());
+            });
             chat.getChildren().add(root);
         } catch (IOException e) {
             e.printStackTrace();

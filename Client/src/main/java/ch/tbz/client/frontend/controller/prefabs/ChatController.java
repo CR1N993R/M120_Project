@@ -1,14 +1,11 @@
 package ch.tbz.client.frontend.controller.prefabs;
 
-import ch.tbz.client.backend.connection.Socket;
 import ch.tbz.client.backend.data.Friend;
 import ch.tbz.client.backend.data.Group;
 import ch.tbz.client.backend.data.Message;
 import ch.tbz.client.backend.interfaces.Chat;
-import ch.tbz.client.frontend.UIManager;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
-import javafx.scene.control.TextArea;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 
@@ -17,7 +14,7 @@ import java.util.ArrayList;
 
 public class ChatController {
     public VBox vboxMessages;
-    public TextArea messageTb;
+    public TextField messageTb;
     public ArrayList<Message> messages;
     public Friend friend;
     public Group group;

@@ -4,19 +4,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="68.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/10.0.2-internal" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.prefabs.MessageController">
-    <AnchorPane fx:id="messagePane" layoutX="8.0" layoutY="4.0" prefHeight="53.0" prefWidth="376.0">
-        <Label fx:id="senderUsernameLabel" layoutX="6.0" layoutY="6.0" prefHeight="18.0" prefWidth="231.0">
-            <font>
-                <Font name="System Bold" size="12.0"/>
-            </font>
-            <tooltip>
-                <Tooltip fx:id="senderUsernameTooltip">
-
-                </Tooltip>
-            </tooltip>
-        </Label>
-        <Label fx:id="messageLabel" layoutX="6.0" layoutY="28.0" maxHeight="1.7976931348623157E308" prefHeight="17.0" prefWidth="361.0" wrapText="true"/>
-        <Label fx:id="dateLabel" alignment="CENTER_RIGHT" layoutX="237.0" layoutY="7.0" prefHeight="18.0" prefWidth="130.0"/>
-    </AnchorPane>
+<AnchorPane prefHeight="68.0" prefWidth="393.0" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.prefabs.MessageController">
+    <Label fx:id="senderUsernameLabel" layoutX="14.0" layoutY="10.0" prefHeight="18.0" prefWidth="231.0" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="139.0" AnchorPane.topAnchor="6.0">
+        <font>
+            <Font name="System Bold" size="12.0" />
+        </font>
+        <tooltip>
+            <Tooltip fx:id="senderUsernameTooltip" />
+        </tooltip>
+    </Label>
+    <Label fx:id="messageLabel" layoutX="14.0" layoutY="32.0" maxHeight="1.7976931348623157E308" prefHeight="17.0" prefWidth="361.0" wrapText="true" AnchorPane.leftAnchor="6.0" AnchorPane.rightAnchor="9.0" />
+    <Label fx:id="dateLabel" alignment="CENTER_RIGHT" layoutX="245.0" layoutY="11.0" prefHeight="18.0" prefWidth="130.0" textAlignment="RIGHT" AnchorPane.rightAnchor="9.0" AnchorPane.topAnchor="7.0" />
 </AnchorPane>

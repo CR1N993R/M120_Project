@@ -4,15 +4,15 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.prefabs.ChatController">
-    <ScrollPane hbarPolicy="never" prefHeight="349.0" prefWidth="393.0" style="-fx-border-color: black; !important -fx-border-width: 0px 0px 1px 0px;" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-        <VBox fx:id="vboxMessages" prefHeight="359.0" prefWidth="393.0" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+<AnchorPane maxHeight="1.7976931348623157E308" maxWidth="1.7976931348623157E308" xmlns="http://javafx.com/javafx/11.0.2" xmlns:fx="http://javafx.com/fxml/1" fx:controller="ch.tbz.client.frontend.controller.prefabs.ChatController">
+    <ScrollPane fitToWidth="true" hbarPolicy="never" prefHeight="349.0" prefWidth="393.0" style="-fx-border-color: black; -fx-border-width: 0px 0px 1px 0px;" AnchorPane.bottomAnchor="51.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+        <VBox fx:id="vboxMessages" AnchorPane.bottomAnchor="41.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         </VBox>
     </ScrollPane>
-    <TextArea fx:id="messageTb" layoutX="14.0" layoutY="365.0" prefHeight="25.0" prefWidth="315.0" AnchorPane.bottomAnchor="9.399999999999977" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="64.0" />
-    <Button layoutX="327.0" layoutY="365.4" mnemonicParsing="false" onAction="#sendClicked" prefHeight="37.0" prefWidth="52.0" text="➤" AnchorPane.bottomAnchor="9.0" AnchorPane.rightAnchor="14.0">
+    <Button layoutX="327.0" layoutY="363.0" mnemonicParsing="false" onAction="#sendClicked" prefHeight="25.0" prefWidth="52.0" text="➤" AnchorPane.bottomAnchor="12.0" AnchorPane.rightAnchor="14.0">
         <font>
             <Font name="System Bold" size="12.0" />
         </font>
     </Button>
+   <TextField fx:id="messageTb" layoutX="14.0" layoutY="363.0" prefHeight="25.0" prefWidth="308.0" AnchorPane.bottomAnchor="12.0" AnchorPane.leftAnchor="14.0" AnchorPane.rightAnchor="71.0" />
 </AnchorPane>
