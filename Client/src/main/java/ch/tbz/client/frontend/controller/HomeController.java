@@ -68,6 +68,9 @@ public class HomeController extends ControllerBase {
             Parent root = loader.load();
             TextChannelController controller = loader.getController();
             controller.init(group);
+            paneFriends.heightProperty().addListener((observableValue, previous, current) -> {
+                root.prefHeight(previous.doubleValue());
+            });
             paneFriends.getChildren().add(root);
         } catch (IOException e) {
             e.printStackTrace();

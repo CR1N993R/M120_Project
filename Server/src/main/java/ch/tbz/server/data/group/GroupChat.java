@@ -57,7 +57,6 @@ public class GroupChat {
         if (!userExists(user)) {
             this.users.add(new UserToGroup(user, this));
             sendDataToUsers();
-            Database.persistObject(this);
         }
     }
 

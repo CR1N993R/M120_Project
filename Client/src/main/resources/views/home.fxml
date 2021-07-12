@@ -40,7 +40,7 @@
                             </font>
                         </Label>
                         <Label fx:id="uniqueIdLabel" layoutY="17.0" prefHeight="17.0" prefWidth="104.0" />
-                        <Label layoutX="115.0" layoutY="6.0" onMouseClicked="#settingsClicked" text="⚙">
+                        <Label layoutX="115.0" layoutY="6.0" onMouseClicked="#settingsClicked" text="O">
                             <font>
                                 <Font size="19.0" />
                             </font>

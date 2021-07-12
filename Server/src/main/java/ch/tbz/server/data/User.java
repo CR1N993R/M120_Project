@@ -191,7 +191,7 @@ public class User {
         GroupChat chat = Database.getGroupById(groupId);
         User user = Database.getUsersById(userId);
         for (UserToGroup group : groups) {
-            if (group.getChat() == chat && group.getChat().getUsers().get(0).getUser() == this){
+            if (group.getChat() == chat){
                 chat.addUser(user);
                 return;
             }

@@ -12,14 +12,12 @@ import javafx.stage.WindowEvent;
 public class Main extends Application {
 
     public void load() {
-        Socket.init();
         UIManager.close();
         UIManager.home();
     }
 
     @Override
     public void start(Stage primaryStage) {
-        Socket.init();
         DataProperties.loadData();
         primaryStage.show();
         primaryStage.setOnCloseRequest((s) -> {
@@ -39,6 +37,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        Socket.init();
         launch(args);
     }
 }

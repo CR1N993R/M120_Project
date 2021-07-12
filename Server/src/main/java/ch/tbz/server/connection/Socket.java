@@ -14,7 +14,9 @@ public abstract class Socket {
         try {
             serverSocketWrapper = new ServerSocketWrapper(25555);
             serverSocketWrapper.addOnConnection(Socket::clientConnected);
-        } catch (IOException ignored) {}
+        } catch (IOException ignored) {
+            ignored.printStackTrace();
+        }
     }
 
     public static void clientConnected(Connection connection){

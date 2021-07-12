@@ -19,7 +19,7 @@ public class Client {
 
     public Client(Connection connection) {
         this.connection = connection;
-        resetListeners();
+        attachListeners();
     }
 
     public void login(String msg) {
@@ -33,7 +33,6 @@ public class Client {
                 this.user.setMessageEvent(connection::emit);
                 getData("");
                 connection.emit("login", "Success!");
-                attachListeners();
             } else {
                 connection.emit("login", "Wrong Username or Password");
             }
@@ -43,6 +42,9 @@ public class Client {
     }
 
     public void attachListeners() {
+        connection.setOn("login", this::login);
+        connection.setOn("createUser", this::createUser);
+        connection.setOn("disconnect", this::disconnect);
         connection.setOn("logout", this::logout);
         connection.setOn("sendToUser", this::sendToUser);
         connection.setOn("sendToGroup", this::sendToGroup);
@@ -60,24 +62,13 @@ public class Client {
         connection.setOn("removeUserFromGroup", this::removeUserFromGroup);
     }
 
-    private void resetListeners() {
-        connection.removeAllListeners();
-        connection.setOn("login", this::login);
-        connection.setOn("createUser", this::createUser);
-        connection.setOn("disconnect", this::disconnect);
-    }
-
     public void logout(String msg) {
-        resetListeners();
         user.setOnline(false);
-        user = null;
     }
 
     public void disconnect(String json) {
-        resetListeners();
         if (user != null) {
             this.user.setOnline(false);
-            this.user = null;
         }
     }
 
@@ -172,7 +163,7 @@ public class Client {
         JSONObject jo = Json.parseJson(json);
         if (jo != null) {
             String groupName = (String) jo.get("groupName");
-            user.createGroup(groupName);
+            this.user.createGroup(groupName);
         }
     }
 

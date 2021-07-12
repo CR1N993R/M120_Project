@@ -1,5 +1,6 @@
 package ch.tbz.server.data.group;
 
+import ch.tbz.server.connection.Client;
 import ch.tbz.server.data.User;
 import ch.tbz.server.util.Database;
 import lombok.Getter;
@@ -31,6 +32,7 @@ public class UserToGroup {
     public UserToGroup(User user, GroupChat groupChat){
         this.chat = groupChat;
         this.user = user;
+        user.getGroups().add(this);
         Database.persistObject(this);
     }
 
