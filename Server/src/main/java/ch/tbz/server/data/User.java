@@ -182,7 +182,6 @@ public class User {
                 group.leaveGroup();
                 groups.remove(group);
                 sendData();
-                Database.persistObject(this);
                 return;
             }
         }
@@ -202,7 +201,6 @@ public class User {
     public void createGroup(String groupName){
         UserToGroup userToGroup = new UserToGroup(this, groupName);
         this.groups.add(userToGroup);
-        Database.persistObject(this);
         sendData();
     }
 

@@ -5,7 +5,6 @@ import ch.tbz.server.data.User;
 import ch.tbz.server.util.Database;
 import ch.tbz.server.util.Json;
 import ch.tbz.server.util.security.Hashing;
-import org.json.simple.JSONArray;
 import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
